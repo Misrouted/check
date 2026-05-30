@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solution Architect — Evalúa tu forma de evaluar</title>
+<meta name="description" content="Este test no es para candidatos. Es para quienes los evalúan. Descubre si tu forma de evaluar talento en arquitectura de software está alineada con lo que realmente importa.">
+<meta property="og:title" content="Solution Architect — Evalúa tu forma de evaluar">
+<meta property="og:description" content="5 preguntas reales de arquitectura para saber si estás dejando pasar perfiles brillantes.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+
+<style>
+:root {
+  --bg: #0a0a0c;
+  --card-bg: #16161a;
+  --accent: #00d4ff;
+  --accent-glow: rgba(0, 212, 255, 0.15);
+  --text-main: #f0f0f0;
+  --text-dim: #a1a1aa;
+  --border: #27272a;
+  --green-bg: #065f46;
+  --green-text: #34d399;
+  --yellow-bg: #92400e;
+  --yellow-text: #fbbf24;
+  --red-bg: #7f1d1d;
+  --red-text: #f87171;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(circle at 50% -20%, #1e293b 0%, transparent 50%);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+#app {
+  width: 92%;
+  max-width: 700px;
+  margin: 40px auto;
+  position: relative;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin-top: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.lang-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.lang-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.manifesto {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 2rem;
+}
+
+.manifesto p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 1rem 0;
+}
+
+.manifesto p:last-child { margin-bottom: 0; }
+
+.manifesto strong { color: var(--text-main); }
+
+.progress-container {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.progress-text {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.option {
+  padding: 20px 24px;
+  margin: 12px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  background: var(--card-bg);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.option:hover {
+  border-color: var(--accent);
+  background: #1c1c21;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5), 0 0 15px var(--accent-glow);
+}
+
+.option:active { transform: translateY(0); }
+
+.btn-primary {
+  display: inline-block;
+  padding: 16px 40px;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-center {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.result-card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+
+.block {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.block:last-child { border: none; }
+
+.alignment-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.high { background: var(--green-bg); color: var(--green-text); }
+.partial { background: var(--yellow-bg); color: var(--yellow-text); }
+.low { background: var(--red-bg); color: var(--red-text); }
+
+.explanation {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  white-space: pre-line;
+  margin: 15px 0;
+}
+
+.explanation strong { color: var(--text-main); }
+
+.result-summary {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  line-height: 1.7;
+  margin: 15px 0;
+}
+
+.your-answer {
+  margin: 12px 0 8px 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--accent);
+  background: rgba(0, 212, 255, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+.your-answer-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.your-answer-text {
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.best-option {
+  margin: 12px 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--green-text);
+  background: rgba(52, 211, 153, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+.best-option-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--green-text);
+  margin-bottom: 4px;
+}
+
+.best-option-text {
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.feedback-text {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.match-block {
+  margin: 12px 0;
+  padding: 16px;
+  border: 1px solid var(--green-text);
+  border-radius: 12px;
+  background: rgba(52, 211, 153, 0.06);
+}
+
+.match-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green-text);
+  margin-bottom: 8px;
+}
+
+.match-text {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.cta-section {
+  margin-top: 2.5rem;
+  padding: 25px;
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent);
+}
+
+.cta-section p {
+  color: var(--text-dim);
+  margin: 0 0 1rem 0;
+}
+
+.restart-area {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.btn-restart {
+  display: inline-block;
+  padding: 10px 28px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn-restart:hover {
+  border-color: var(--text-dim);
+  color: var(--text-main);
+}
+
+.footer {
+  margin-top: 50px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.fade {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  #app { width: 95%; }
+  .option { padding: 16px; font-size: 0.95rem; }
+  .result-card { padding: 20px; }
+  .manifesto { padding: 20px; }
+  .lang-toggle { top: 10px; right: 10px; padding: 6px 12px; font-size: 0.75rem; }
+}
+</style>
+</head>
+<body>
+
+<button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
+<div id="app"></div>
+
+<script>
+let lang = 'es';
+let screen = 'intro';
+let current = 0;
+let answers = [];
+
+const STORAGE_KEY = 'sa_quiz_state';
+
+function saveState() {
+  if (screen === 'intro') return;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    screen, current, answers, lang
+  }));
+}
+
+function clearState() {
+  localStorage.removeItem(STORAGE_KEY);
+}
+
+function restoreState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return false;
+  try {
+    const state = JSON.parse(raw);
+    if (state.screen && (state.screen === 'quiz' || state.screen === 'result')) {
+      screen = state.screen;
+      current = state.current || 0;
+      answers = state.answers || [];
+      lang = state.lang || 'es';
+      return true;
+    }
+  } catch (_) {}
+  return false;
+}
+
+function tr(obj) {
+  return obj ? obj[lang] : '';
+}
+
+const questions = [
+  {
+    q: {
+      es: "Un sistema legacy sin documentación, tests ni dueño claro lleva años dando problemas. ¿Qué perfil de arquitecto crees que lo resolvería mejor?",
+      en: "A legacy system with no documentation, tests, or clear owner has been causing problems for years. What architect profile would solve it best?"
+    },
+    options: [
+      { value: 0, text: { es: "Uno con certificaciones TOGAF y experiencia liderando equipos grandes en entornos estables", en: "One with TOGAF certifications and experience leading large teams in stable environments" }, feedback: { es: "Las certificaciones y la experiencia jerárquica son útiles en entornos estables, pero no preparan para el caos de un sistema legacy sin dueño. Este perfil suele pedir recursos y tiempo que no existen.", en: "Certifications and hierarchical experience are useful in stable environments, but they don't prepare you for the chaos of an ownerless legacy system. This profile often asks for resources and time that don't exist." } },
+      { value: 1, text: { es: "Uno con experiencia mixta: ha liderado equipos pero también ha trabajado directamente con sistemas legacy", en: "One with mixed experience: has led teams but also worked directly with legacy systems" }, feedback: { es: "Es un perfil más equilibrado, pero la mezcla puede generar ambigüedad. En situaciones extremas, se necesita alguien que ya haya estado exactamente en ese escenario.", en: "A more balanced profile, but the mix can create ambiguity. In extreme situations, you need someone who has already been in that exact scenario." } },
+      { value: 2, text: { es: "Uno que ha resuelto problemas reales en sistemas legacy, aunque no tenga certificaciones ni haya liderado grandes equipos", en: "One who has solved real problems in legacy systems, even without certifications or large team leadership experience" }, feedback: { es: "Has identificado al perfil correcto. La experiencia práctica en sistemas legacy es insustituible. Quien ha sobrevivido al caos sabe cómo navegarlo.", en: "You've identified the right profile. Hands-on experience with legacy systems is irreplaceable. Those who have survived the chaos know how to navigate it." } }
+    ],
+    bestExplanation: {
+      es: "El mejor perfil para un sistema legacy sin dueño es alguien que ya ha resuelto problemas reales en ese contexto. Las certificaciones y la experiencia jerárquica no preparan para el caos de un sistema abandonado. Solo la experiencia práctica en trinchera enseña a navegar ese tipo de situaciones.",
+      en: "The best profile for an ownerless legacy system is someone who has already solved real problems in that context. Certifications and hierarchical experience don't prepare you for the chaos of an abandoned system. Only hands-on experience teaches you to navigate those situations."
+    }
+  },
+  {
+    q: {
+      es: "Tres stakeholders clave tienen tres visiones distintas para el mismo proyecto. No hay acuerdo. ¿Qué enfoque del arquitecto da mejores resultados?",
+      en: "Three key stakeholders have three different visions for the same project. There's no agreement. What architect approach delivers the best results?"
+    },
+    options: [
+      { value: 0, text: { es: "Que elabore un plan detallado y espere a tener aprobación unificada antes de empezar", en: "Create a detailed plan and wait for unified approval before starting" }, feedback: { es: "Esperar un plan detallado y consenso unificado antes de empezar suele paralizar proyectos. Los stakeholders rara vez se alinean sin evidencia concreta.", en: "Waiting for a detailed plan and unified consensus before starting usually paralyzes projects. Stakeholders rarely align without concrete evidence." } },
+      { value: 1, text: { es: "Que busque un compromiso equilibrado entre las tres posturas antes de ejecutar", en: "Seek a balanced compromise between the three positions before executing" }, feedback: { es: "Buscar compromiso es razonable, pero a menudo termina en soluciones que no convencen a nadie. Se necesita algo más tangible para romper el estancamiento.", en: "Seeking compromise is reasonable, but it often ends in solutions that don't convince anyone. You need something more tangible to break the deadlock." } },
+      { value: 2, text: { es: "Que construya un prototipo funcional pequeño y use datos reales para desbloquear la decisión", en: "Build a small functional prototype and use real data to unlock the decision" }, feedback: { es: "Has elegido bien. Un prototipo funcional crea desbloqueo con datos reales. Es la forma más rápida de alinear posturas enfrentadas.", en: "Good choice. A functional prototype creates alignment with real data. It's the fastest way to reconcile opposing positions." } }
+    ],
+    bestExplanation: {
+      es: "Construir un prototipo funcional rápido desbloquea la decisión con datos reales en lugar de discusiones infinitas. Los mejores arquitectos no esperan consenso perfecto; crean evidencia que alinea a los stakeholders.",
+      en: "Building a quick functional prototype unlocks the decision with real data instead of endless discussions. The best architects don't wait for perfect consensus; they create evidence that aligns stakeholders."
+    }
+  },
+  {
+    q: {
+      es: "El negocio exige entregar features rápido. El equipo quiere refactorizar deuda técnica. ¿Qué perfil de arquitecto navega mejor esta tensión?",
+      en: "The business demands fast feature delivery. The team wants to refactor technical debt. What architect profile navigates this tension best?"
+    },
+    options: [
+      { value: 0, text: { es: "El que defiende la calidad técnica por encima de todo, aunque el negocio se retrase", en: "One who defends technical quality above all, even if the business is delayed" }, feedback: { es: "La calidad técnica es importante, pero ignorar las presiones del negocio hace que el arquitecto sea visto como un obstáculo. El arte está en equilibrar.", en: "Technical quality is important, but ignoring business pressures makes the architect seen as an obstacle. The art is in balancing." } },
+      { value: 1, text: { es: "El que intenta contentar a ambas partes sin decantarse del todo", en: "One who tries to please both sides without fully committing" }, feedback: { es: "No decantarse puede parecer seguro, pero en la práctica genera frustración en ambos lados. Se necesita criterio, no neutralidad.", en: "Not taking sides may seem safe, but in practice it creates frustration on both sides. You need criteria, not neutrality." } },
+      { value: 2, text: { es: "El que entiende el contexto de negocio, prioriza deuda estratégica y negocia con datos", en: "One who understands business context, prioritizes strategic debt, and negotiates with data" }, feedback: { es: "Excelente elección. La deuda técnica es estratégica y saber gestionarla con criterio de negocio es lo que distingue a un gran arquitecto.", en: "Excellent choice. Technical debt is strategic, and knowing how to manage it with business judgment is what sets a great architect apart." } }
+    ],
+    bestExplanation: {
+      es: "Un arquitecto efectivo entiende que la deuda técnica es estratégica. No toda deuda hay que pagarla, y no toda feature hay que entregarla ya. Negociar con datos y contexto de negocio es lo que realmente mueve proyectos hacia adelante.",
+      en: "An effective architect understands that technical debt is strategic. Not all debt needs to be paid, and not every feature needs to be delivered now. Negotiating with data and business context is what truly moves projects forward."
+    }
+  },
+  {
+    q: {
+      es: "El CTO quiere adoptar una tecnología que nadie en el equipo domina. ¿Qué tipo de arquitecto es más valioso aquí?",
+      en: "The CTO wants to adopt a technology that no one on the team masters. What type of architect is most valuable here?"
+    },
+    options: [
+      { value: 0, text: { es: "El que insiste en contratar expertos externos o hacer formación oficial antes de empezar", en: "One who insists on hiring external experts or formal training before starting" }, feedback: { es: "Contratar expertos o formarse antes de empezar suena seguro, pero ralentiza la adopción y asume que la tecnología es la correcta sin haberlo validado.", en: "Hiring experts or training before starting sounds safe, but it slows adoption and assumes the technology is correct without validation." } },
+      { value: 1, text: { es: "El que propone un piloto controlado mientras el equipo aprende en paralelo", en: "One who proposes a controlled pilot while the team learns in parallel" }, feedback: { es: "Un piloto controlado es mejor que nada, pero sin cuestionar primero si la tecnología es necesaria, corres el riesgo de optimizar algo que no debería existir.", en: "A controlled pilot is better than nothing, but without first questioning whether the technology is needed, you risk optimizing something that shouldn't exist." } },
+      { value: 2, text: { es: "El que primero cuestiona si esa tecnología es realmente necesaria, y si lo es, la adopta con iteraciones cortas aprendiendo sobre la marcha", en: "One who first questions whether the technology is truly necessary, and if so, adopts it with short iterations learning on the go" }, feedback: { es: "Has acertado. Cuestionar la necesidad real y luego iterar sobre problemas concretos es el enfoque más eficiente y menos riesgoso.", en: "You're right. Questioning the real need and then iterating on concrete problems is the most efficient and least risky approach." } }
+    ],
+    bestExplanation: {
+      es: "La mejor respuesta es cuestionar primero si la tecnología es necesaria. Muchos equipos adoptan tecnología nueva sin necesidad real. Si realmente hace falta, el aprendizaje iterativo supera a la formación formal porque se aprende sobre problemas reales.",
+      en: "The best answer is to first question whether the technology is necessary. Many teams adopt new tech without real need. If it's truly needed, iterative learning beats formal training because you learn on real problems."
+    }
+  },
+  {
+    q: {
+      es: "Te piden una decisión de arquitectura en 2 días con datos incompletos y mucha presión. ¿Qué perfil da la mejor respuesta?",
+      en: "You're asked to make an architecture decision in 2 days with incomplete data and high pressure. What profile delivers the best response?"
+    },
+    options: [
+      { value: 0, text: { es: "El que pide más tiempo hasta tener todos los datos antes de decidir", en: "One who asks for more time until all data is available before deciding" }, feedback: { es: "Pedir más tiempo cuando hay presión suele ser la opción más segura para el arquitecto, pero la peor para el proyecto. La parálisis por análisis es real.", en: "Asking for more time under pressure is usually the safest option for the architect, but the worst for the project. Analysis paralysis is real." } },
+      { value: 1, text: { es: "El que toma una decisión conservadora y reversible mientras tanto", en: "One who makes a conservative, reversible decision in the meantime" }, feedback: { es: "Una decisión conservadora y reversible es mejor que no decidir, pero puede quedarse corta cuando se necesita avanzar con determinación.", en: "A conservative, reversible decision is better than no decision, but it can fall short when you need to move forward with determination." } },
+      { value: 2, text: { es: "El que decide rápido con la información disponible, deja puntos de decisión abiertos, y ajusta cuando lleguen más datos", en: "One who decides quickly with available information, leaves decision points open, and adjusts when more data arrives" }, feedback: { es: "Perfecto. Decidir con datos incompletos y ajustar sobre la marcha es exactamente lo que se necesita en arquitectura real. No hay certidumbre perfecta.", en: "Perfect. Deciding with incomplete data and adjusting on the fly is exactly what real architecture requires. There is no perfect certainty." } }
+    ],
+    bestExplanation: {
+      es: "En situaciones de presión con datos incompletos, decidir rápido con la información disponible y ajustar sobre la marcha es más valioso que paralizar el proyecto esperando certidumbre. La arquitectura es toma de decisiones continua, no un evento único.",
+      en: "In high-pressure situations with incomplete data, deciding quickly with available information and adjusting on the fly is more valuable than paralyzing the project waiting for certainty. Architecture is continuous decision-making, not a one-time event."
+    }
+  }
+];
+
+const i18n = {
+  intro: {
+    es: {
+      p1: "<strong>Llevo años resolviendo problemas de arquitectura.</strong> He visto sistemas completos caerse, equipos bloqueados por decisiones técnicas mal tomadas, y proyectos salvarse por gente que sabía más de lo que sus títulos decían.",
+      p2: "También he visto reclutadores y CTOs descartar perfiles brillantes porque no tenían <em>el certificado correcto</em> o porque no habían <em>liderado equipos grandes</em>.",
+      p3: "Este test no es para candidatos. <strong>Es para quienes los evalúan.</strong> Las preguntas plantean situaciones reales de arquitectura. Tus respuestas revelarán si tu forma de evaluar talento está alineada con lo que realmente importa — o si estás dejando pasar perfiles que podrían salvar tu próximo proyecto.",
+      startBtn: "Comenzar evaluación",
+      step: "Pregunta"
+    },
+    en: {
+      p1: "<strong>I've spent years solving architecture problems.</strong> I've seen complete systems crash, teams blocked by bad technical decisions, and projects saved by people who knew more than their titles suggested.",
+      p2: "I've also seen recruiters and CTOs dismiss brilliant profiles because they didn't have <em>the right certification</em> or hadn't <em>led large teams</em>.",
+      p3: "This test is not for candidates. <strong>It's for those who evaluate them.</strong> The questions present real architecture situations. Your answers will reveal whether your talent evaluation is aligned with what really matters — or if you're passing on profiles that could save your next project.",
+      startBtn: "Start evaluation",
+      step: "Question"
+    }
+  },
+  result: {
+    es: {
+      profile_kind: "Ojo clínico",
+      profile_mixed: "Criterio mixto",
+      profile_bias: "Sesgo credencial",
+      summary_kind: "Valoras la capacidad de ejecución real por encima de los títulos. Identificas talento donde otros ven carencias. Este es el perfil de quien entiende que la arquitectura se demuestra resolviendo problemas, no coleccionando certificados.",
+      summary_mixed: "Tu criterio es inconsistente. A veces valoras lo práctico, otras veces te dejas llevar por credenciales. Esto puede hacer que descartes buenos candidatos o que contrates perfiles que lucen bien en papel pero no rinden en la realidad.",
+      summary_bias: "Priorizas las credenciales formales y la experiencia jerárquica. En entornos estables y predecibles funciona. Pero en proyectos complejos, con incertidumbre y sistemas legacy — que es donde más se necesita un buen Solution Architect — este enfoque descarta sistemáticamente a los perfiles más valiosos.",
+      summary_default: "Tus respuestas no muestran un patrón claro. Puede que evalúes caso a caso, o que no tengas un criterio definido para identificar talento en arquitectura.",
+      section_your_answers: "Tus respuestas",
+      section_analysis: "Análisis",
+      section_positioning: "Mi posicionamiento",
+      label_your_answer: "Tu respuesta",
+      label_best_option: "Mi respuesta honesta",
+      label_alignment: "Alineación",
+      match_message: "Pensamos igual — esta es mi respuesta honesta.",
+      restartLabel: "Empezar de nuevo",
+      cta_text: "Si después de esto crees que mi perfil encaja con lo que buscas, hablemos.",
+      cta_btn: "Hablemos por LinkedIn",
+      positioning: "Los mejores Solution Architects que he conocido no tenían el certificado más caro ni el equipo más grande. Tenían algo mejor: años resolviendo problemas reales, visión para anticiparse al fallo, y la capacidad de hacer que las cosas funcionen cuando todo lo demás falla.\n\nEso no se ve en un currículum. Se ve en cómo piensan y cómo actúan bajo presión.",
+      footer: "La experiencia no siempre se ve en los títulos.\nSe nota cuando los sistemas empiezan a fallar y alguien sabe exactamente qué hacer.",
+      alignment_high: "Acierto",
+      alignment_partial: "Parcial",
+      alignment_low: "Sesgo",
+      of: "de"
+    },
+    en: {
+      profile_kind: "Keen Eye",
+      profile_mixed: "Mixed Criteria",
+      profile_bias: "Credential Bias",
+      summary_kind: "You value real execution ability over titles. You identify talent where others see gaps. This is the profile of someone who understands that architecture is demonstrated by solving problems, not collecting certificates.",
+      summary_mixed: "Your criteria is inconsistent. Sometimes you value practical skills, other times you're swayed by credentials. This can lead you to dismiss good candidates or hire profiles that look good on paper but don't deliver in reality.",
+      summary_bias: "You prioritize formal credentials and hierarchical experience. This works in stable, predictable environments. But in complex projects with uncertainty and legacy systems — where a good Solution Architect is needed most — this approach systematically dismisses the most valuable profiles.",
+      summary_default: "Your answers don't show a clear pattern. You may evaluate case by case, or you may not have a defined criterion for identifying architectural talent.",
+      section_your_answers: "Your answers",
+      section_analysis: "Analysis",
+      section_positioning: "My positioning",
+      label_your_answer: "Your answer",
+      label_best_option: "My honest answer",
+      label_alignment: "Alignment",
+      match_message: "Great minds think alike — this is my honest answer too.",
+      restartLabel: "Start over",
+      cta_text: "If after this you think my profile fits what you're looking for, let's talk.",
+      cta_btn: "Let's talk on LinkedIn",
+      positioning: "The best Solution Architects I've met didn't have the most expensive certification or the largest team. They had something better: years of solving real problems, vision to anticipate failure, and the ability to make things work when everything else fails.\n\nThat doesn't show up on a resume. It shows in how they think and act under pressure.",
+      footer: "Experience isn't always visible in titles.\nIt becomes obvious when systems start failing and someone knows exactly what to do.",
+      alignment_high: "Hit",
+      alignment_partial: "Partial",
+      alignment_low: "Bias",
+      of: "of"
+    }
+  }
+};
+
+function render() {
+  document.getElementById("langBtn").textContent = lang === 'es' ? 'EN' : 'ES';
+  document.documentElement.lang = lang;
+  if (screen === 'intro') renderIntro();
+  else if (screen === 'quiz') renderQuestion();
+  else if (screen === 'result') showResult();
+}
+
+function toggleLang() {
+  lang = lang === 'es' ? 'en' : 'es';
+  saveState();
+  render();
+}
+
+function renderIntro() {
+  const txt = i18n.intro[lang];
+  document.getElementById("app").innerHTML = `
+    <div class="fade">
+      <div class="manifesto">
+        <p>${txt.p1}</p>
+        <p>${txt.p2}</p>
+        <p>${txt.p3}</p>
+      </div>
+      <div class="btn-center">
+        <button class="btn-primary" onclick="startQuiz()">${txt.startBtn}</button>
+      </div>
+    </div>
+  `;
+}
+
+function startQuiz() {
+  screen = 'quiz';
+  current = 0;
+  answers = [];
+  clearState();
+  render();
+}
+
+function restartQuiz() {
+  clearState();
+  screen = 'intro';
+  current = 0;
+  answers = [];
+  render();
+}
+
+function renderQuestion() {
+  const txt = i18n.intro[lang];
+  let q = questions[current];
+  let progressPercent = (current / questions.length) * 100;
+
+  document.getElementById("app").innerHTML = `
+    <div class="fade">
+      <span class="progress-text">${txt.step} ${current + 1} ${txt.of || 'of'} ${questions.length}</span>
+      <div class="progress-container">
+        <div class="progress-bar" style="width: ${progressPercent}%"></div>
+      </div>
+      <h1>${tr(q.q)}</h1>
+      <div class="options-list">
+        ${q.options.map((opt, idx) => `
+          <div class="option" onclick="selectOption(${idx})">
+            ${tr(opt.text)}
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function selectOption(idx) {
+  let opt = questions[current].options[idx];
+  answers.push({
+    questionIdx: current,
+    chosenIdx: idx,
+    value: opt.value
+  });
+  current++;
+  if (current < questions.length) {
+    saveState();
+    renderQuestion();
+  } else {
+    screen = 'result';
+    saveState();
+    render();
+  }
+}
+
+function getProfile(total, high, low) {
+  let ratio = total / (questions.length * 2);
+  if (ratio > 0.75 && low === 0) return "kind";
+  if (ratio > 0.4) return "mixed";
+  return "bias";
+}
+
+function getSummary(profile) {
+  const r = i18n.result[lang];
+  switch (profile) {
+    case "kind": return r.summary_kind;
+    case "mixed": return r.summary_mixed;
+    case "bias": return r.summary_bias;
+    default: return r.summary_default;
+  }
+}
+
+function getProfileTitle(profile) {
+  const r = i18n.result[lang];
+  const names = { kind: r.profile_kind, mixed: r.profile_mixed, bias: r.profile_bias };
+  const emojis = { kind: "✅", mixed: "⚠️", bias: "❌" };
+  return `${emojis[profile]} ${names[profile]}`;
+}
+
+function buildAnalysis() {
+  const r = i18n.result[lang];
+  return answers.map((a, i) => {
+    const q = questions[a.questionIdx];
+    const chosenOpt = q.options[a.chosenIdx];
+    const isBest = a.value === 2;
+
+    let badgeClass = isBest ? "high" : (a.value === 1 ? "partial" : "low");
+    let alignmentLabel = isBest ? r.alignment_high : (a.value === 1 ? r.alignment_partial : r.alignment_low);
+
+    let content;
+    if (isBest) {
+      content = `
+        <div class="match-block">
+          <div class="match-label">${r.match_message}</div>
+          <div class="match-text">${tr(chosenOpt.text)}</div>
+          <div class="feedback-text">${tr(q.bestExplanation)}</div>
+        </div>`;
+    } else {
+      const bestOpt = q.options.find(o => o.value === 2);
+      content = `
+        <div class="your-answer">
+          <div class="your-answer-label">${r.label_your_answer}</div>
+          <div class="your-answer-text">${tr(chosenOpt.text)}</div>
+          <div class="feedback-text">${tr(chosenOpt.feedback)}</div>
+        </div>
+        <div class="best-option">
+          <div class="best-option-label">${r.label_best_option}</div>
+          <div class="best-option-text">${tr(bestOpt.text)}</div>
+          <div class="feedback-text">${tr(q.bestExplanation)}</div>
+        </div>`;
+    }
+
+    return `
+      <div class="block">
+        <p style="margin:0; font-weight:600;">${i + 1}. ${tr(q.q)}</p>
+        ${content}
+        <span class="alignment-badge ${badgeClass}">${r.label_alignment}: ${alignmentLabel}</span>
+      </div>
+    `;
+  }).join("");
+}
+
+function showResult() {
+  const r = i18n.result[lang];
+  let total = answers.reduce((acc, a) => acc + a.value, 0);
+  let high = answers.filter(a => a.value === 2).length;
+  let low = answers.filter(a => a.value === 0).length;
+  let profile = getProfile(total, high, low);
+  let summary = getSummary(profile);
+  let profileTitle = getProfileTitle(profile);
+
+  document.getElementById("app").innerHTML = `
+    <div class="fade result-card">
+      <h1 style="margin-top:0">${profileTitle}</h1>
+      <p class="result-summary">${summary}</p>
+
+      <h2>${r.section_your_answers}</h2>
+      ${buildAnalysis()}
+
+      <h2>${r.section_positioning}</h2>
+      <p class="explanation" style="font-size:1rem; color:var(--text-main); white-space:pre-line">${r.positioning}</p>
+
+      <div class="cta-section">
+        <p>${r.cta_text}</p>
+        <a href="https://www.linkedin.com/in/guillermo-cle-gonzalez-1180266a/" target="_blank" class="btn-primary" style="text-decoration:none;">${r.cta_btn}</a>
+      </div>
+
+      <div class="restart-area">
+        <button class="btn-restart" onclick="restartQuiz()">${r.restartLabel}</button>
+      </div>
+
+      <div class="footer" style="margin-top:30px; white-space:pre-line">${r.footer}</div>
+    </div>
+  `;
+}
+
+restoreState();
+render();
+</script>
+</body>
+</html>
