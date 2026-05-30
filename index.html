@@ -161,12 +161,21 @@ h2 {
   cursor: pointer;
   transition: all 0.25s ease;
   font-family: inherit;
+  width: 100%;
+  max-width: 280px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
   background: var(--accent);
   color: var(--bg);
   box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--border);
+  color: var(--text-dim);
 }
 
 .btn-center {
@@ -262,7 +271,6 @@ h2 {
 
 .feedback-text {
   color: var(--text-dim);
-  font-size: 0.9rem;
   font-style: italic;
   margin-top: 8px;
   padding-top: 8px;
@@ -293,15 +301,54 @@ h2 {
 .cta-section {
   margin-top: 2.5rem;
   padding: 25px;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--border);
   border-radius: 16px;
-  text-align: center;
-  background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent);
+  background: linear-gradient(135deg, rgba(255,255,255,0.01), transparent);
+  text-align: left;
 }
 
 .cta-section p {
   color: var(--text-dim);
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  background: #0d0d11;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.success-message {
+  padding: 20px;
+  border: 1px solid var(--green-text);
+  background: rgba(52, 211, 153, 0.05);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--green-text);
+  font-weight: 500;
 }
 
 .restart-area {
@@ -509,8 +556,11 @@ const i18n = {
       label_alignment: "Alineación",
       match_message: "Pensamos igual — esta es mi respuesta honesta.",
       restartLabel: "Empezar de nuevo",
-      cta_text: "Si después de esto crees que mi perfil encaja con lo que buscas, hablemos.",
-      cta_btn: "Hablemos por LinkedIn",
+      cta_text: "Si después de ver esto crees que mi mentalidad y forma de enfocar la arquitectura cuadran con tu empresa, hablemos.",
+      cta_btn: "Hablemos",
+      label_name: "Tu nombre",
+      label_email: "Correo electrónico",
+      success_msg: "¡Correo enviado! Te contestaré lo antes posible.",
       positioning: "Los mejores Solution Architects que he conocido no tenían el certificado más caro ni el equipo más grande. Tenían algo mejor: años resolviendo problemas reales, visión para anticiparse al fallo, y la capacidad de hacer que las cosas funcionen cuando todo lo demás falla.\n\nEso no se ve en un currículum. Se ve en cómo piensan y cómo actúan bajo presión.",
       footer: "La experiencia no siempre se ve en los títulos.\nSe nota cuando los sistemas empiezan a fallar y alguien sabe exactamente qué hacer.",
       alignment_high: "Acierto",
@@ -534,8 +584,11 @@ const i18n = {
       label_alignment: "Alignment",
       match_message: "Great minds think alike — this is my honest answer too.",
       restartLabel: "Start over",
-      cta_text: "If after this you think my profile fits what you're looking for, let's talk.",
-      cta_btn: "Let's talk on LinkedIn",
+      cta_text: "If you think my mindset and approach to architecture align with your company, let's talk.",
+      cta_btn: "Let's talk",
+      label_name: "Your name",
+      label_email: "Email address",
+      success_msg: "Message sent! I will get back to you as soon as possible.",
       positioning: "The best Solution Architects I've met didn't have the most expensive certification or the largest team. They had something better: years of solving real problems, vision to anticipate failure, and the ability to make things work when everything else fails.\n\nThat doesn't show up on a resume. It shows in how they think and act under pressure.",
       footer: "Experience isn't always visible in titles.\nIt becomes obvious when systems start failing and someone knows exactly what to do.",
       alignment_high: "Hit",
@@ -720,9 +773,22 @@ function showResult() {
       <h2>${r.section_positioning}</h2>
       <p class="explanation" style="font-size:1rem; color:var(--text-main); white-space:pre-line">${r.positioning}</p>
 
-      <div class="cta-section">
+      <div class="cta-section" id="contact-container">
         <p>${r.cta_text}</p>
-        <a href="https://www.linkedin.com/in/guillermo-cle-gonzalez-1180266a/" target="_blank" class="btn-primary" style="text-decoration:none;">${r.cta_btn}</a>
+        
+        <div class="form-group">
+          <label for="user-name">${r.label_name}</label>
+          <input type="text" id="user-name" class="form-control" placeholder="...">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.8rem;">
+          <label for="user-email">${r.label_email}</label>
+          <input type="email" id="user-email" class="form-control" placeholder="name@company.com">
+        </div>
+
+        <div style="text-align: center;">
+          <button id="btn-cta-n8n" class="btn-primary" onclick="sendDataToN8n()">${r.cta_btn}</button>
+        </div>
       </div>
 
       <div class="restart-area">
@@ -732,6 +798,87 @@ function showResult() {
       <div class="footer" style="margin-top:30px; white-space:pre-line">${r.footer}</div>
     </div>
   `;
+}
+
+function sendDataToN8n() {
+  const btn = document.getElementById('btn-cta-n8n');
+  const nameInput = document.getElementById('user-name');
+  const emailInput = document.getElementById('user-email');
+  if (!btn || !nameInput || !emailInput) return;
+
+  const nombre = nameInput.value.trim();
+  const email = emailInput.value.trim();
+
+  // Validación básica antes de enviar
+  if (!nombre) {
+    alert(lang === 'es' ? 'Por favor, introduce tu nombre.' : 'Please enter your name.');
+    nameInput.focus();
+    return;
+  }
+  if (!email || !email.includes('@')) {
+    alert(lang === 'es' ? 'Por favor, introduce un correo válido.' : 'Please enter a valid email.');
+    emailInput.focus();
+    return;
+  }
+
+  btn.disabled = true;
+  const originalText = btn.textContent;
+  btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
+
+  let total = answers.reduce((acc, a) => acc + a.value, 0);
+  let high = answers.filter(a => a.value === 2).length;
+  let low = answers.filter(a => a.value === 0).length;
+  let profile = getProfile(total, high, low);
+
+  let responsesPayload = answers.map((a, i) => {
+    const q = questions[a.questionIdx];
+    return {
+      pregunta_num: i + 1,
+      pregunta_texto_es: q.q.es,
+      pregunta_texto_en: q.q.en,
+      respuesta_elegida_idx: a.chosenIdx,
+      respuesta_elegida_texto_es: q.options[a.chosenIdx].text.es,
+      respuesta_elegida_texto_en: q.options[a.chosenIdx].text.en,
+      valor_puntuacion: a.value
+    };
+  });
+
+  const payload = {
+    fecha: new Date().toISOString(),
+    idioma_navegacion: lang,
+    nombre: nombre,
+    email: email,
+    perfil_resultado: profile,
+    puntuacion_total: total,
+    respuestas_correctas: high,
+    respuestas_incorrectas: low,
+    detalle_respuestas: responsesPayload
+  };
+
+  fetch('https://n8n.misrouted.es/webhook/check', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    if (!response.ok) throw new Error('Network response error');
+    
+    // Mostramos el bloque de éxito y ocultamos el formulario
+    document.getElementById('contact-container').innerHTML = `
+      <div class="success-message fade">
+        ${i18n.result[lang].success_msg}
+      </div>
+    `;
+  })
+  .catch(error => {
+    console.error('Error enviando datos a n8n:', error);
+    alert(lang === 'es' ? 'Hubo un error al enviar. Por favor, inténtalo de nuevo.' : 'An error occurred. Please try again.');
+    
+    btn.disabled = false;
+    btn.textContent = originalText;
+  });
 }
 
 restoreState();
