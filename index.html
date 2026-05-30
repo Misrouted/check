@@ -1,888 +1,1421 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solution Architect — Evalúa tu forma de evaluar</title>
-<meta name="description" content="Este test no es para candidatos. Es para quienes los evalúan. Descubre si tu forma de evaluar talento en arquitectura de software está alineada con lo que realmente importa.">
-<meta property="og:title" content="Solution Architect — Evalúa tu forma de evaluar">
-<meta property="og:description" content="5 preguntas reales de arquitectura para saber si estás dejando pasar perfiles brillantes.">
-<meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guillermo | AI Strategy & Enablement Lead</title>
+    <style>
+        :root {
+            --bg: #080c18;
+            --bg2: #0d1225;
+            --card: rgba(17, 25, 45, 0.78);
+            --card-border: rgba(148, 163, 184, 0.08);
+            --text: #f1f5f9;
+            --muted: #8896b0;
+            --accent: #60a5fa;
+            --accent2: #a78bfa;
+            --accent3: #34d399;
+            --gold: #fbbf24;
+            --red: #fb7185;
+            --radius: 14px;
+            --shadow: 0 30px 60px -15px rgba(0,0,0,0.7);
+            --green-bg: #065f46; --green-text: #34d399;
+            --yellow-bg: #92400e; --yellow-text: #fbbf24;
+            --red-bg: #7f1d1d; --red-text: #f87171;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-<style>
-:root {
-  --bg: #0a0a0c;
-  --card-bg: #16161a;
-  --accent: #00d4ff;
-  --accent-glow: rgba(0, 212, 255, 0.15);
-  --text-main: #f0f0f0;
-  --text-dim: #a1a1aa;
-  --border: #27272a;
-  --green-bg: #065f46;
-  --green-text: #34d399;
-  --yellow-bg: #92400e;
-  --yellow-text: #fbbf24;
-  --red-bg: #7f1d1d;
-  --red-text: #f87171;
-}
+        #scrollTop {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            color: var(--accent);
+            font-size: 1.2rem;
+            cursor: pointer; z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+        #scrollTop.show { opacity: 1; visibility: visible; }
+        #scrollTop:hover { background: var(--accent); color: var(--bg); }
 
-* { box-sizing: border-box; }
+        #particles {
+            position: fixed; inset: 0; z-index: 0;
+            pointer-events: none; overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 3px; height: 3px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: float linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.08; }
+            90% { opacity: 0.08; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
 
-body {
-  margin: 0;
-  background-color: var(--bg);
-  background-image: radial-gradient(circle at 50% -20%, #1e293b 0%, transparent 50%);
-  color: var(--text-main);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  line-height: 1.5;
-}
+        .wrapper {
+            position: relative; z-index: 1;
+            max-width: 1120px; margin: 0 auto;
+            padding: 30px 24px 60px;
+            display: flex; flex-direction: column; align-items: center;
+        }
 
-#app {
-  width: 92%;
-  max-width: 700px;
-  margin: 40px auto;
-  position: relative;
-}
+        /* HERO */
+        .hero {
+            text-align: center; width: 100%;
+            padding: 50px 20px 30px;
+        }
+        .hero-availability {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(52,211,153,0.08);
+            border: 1px solid rgba(52,211,153,0.15);
+            padding: 5px 16px; border-radius: 100px;
+            font-size: 0.78rem; color: var(--accent3);
+            margin-bottom: 22px; letter-spacing: 0.3px;
+        }
+        .hero-availability .pulse {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--accent3);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .hero h1 {
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+        }
+        .hero h1 .name {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 60%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero h1 .role {
+            display: block;
+            font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+            font-weight: 500;
+            color: var(--muted);
+            -webkit-text-fill-color: var(--muted);
+            margin-top: 6px;
+            letter-spacing: 0.5px;
+        }
+        .hero .tagline {
+            font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+            color: var(--muted);
+            max-width: 700px; margin: 14px auto 0;
+        }
+        .keyword-strip {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+            margin: 22px auto 0; max-width: 750px;
+        }
+        .keyword {
+            font-size: 0.72rem; font-weight: 500;
+            padding: 5px 14px; border-radius: 6px;
+            background: rgba(96,165,250,0.05);
+            border: 1px solid rgba(96,165,250,0.1);
+            color: rgba(96,165,250,0.7);
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .hero-stats {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 36px;
+            margin: 30px 0 0;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .num { font-size: 1.6rem; font-weight: 700; color: var(--text); }
+        .hero-stat .label {
+            font-size: 0.75rem; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            margin-top: 2px; max-width: 110px;
+        }
 
-h1 {
-  font-size: clamp(1.5rem, 5vw, 2rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-}
+        /* PHILOSOPHY */
+        .philosophy {
+            width: 100%; max-width: 900px;
+            margin: 25px 0 10px;
+            padding: 30px 32px;
+            background: linear-gradient(135deg, rgba(96,165,250,0.04), rgba(167,139,250,0.04));
+            border: 1px solid rgba(96,165,250,0.1);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .philosophy .marker {
+            font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--accent);
+            font-weight: 600; margin-bottom: 12px;
+        }
+        .philosophy blockquote {
+            font-size: 1.05rem; color: var(--text);
+            max-width: 750px; margin: 0 auto;
+            line-height: 1.7; font-style: italic;
+        }
+        .philosophy blockquote cite {
+            display: block; margin-top: 10px;
+            font-size: 0.8rem; color: var(--muted);
+            font-style: normal;
+        }
 
-h2 {
-  font-size: 1.25rem;
-  color: var(--accent);
-  margin-top: 2.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+        /* ─── QUIZ SECTION ─── */
+        .quiz-section {
+            width: 100%; max-width: 750px;
+            margin: 20px 0 25px;
+        }
+        .quiz-section > .section-label {
+            font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--accent);
+            text-align: center; margin-bottom: 16px; font-weight: 600;
+        }
 
-.lang-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 16px;
-  color: var(--text-dim);
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-family: inherit;
-  transition: all 0.2s;
-}
+        .quiz-card {
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 32px 34px;
+        }
+        @media(max-width:600px){ .quiz-card{ padding: 22px 18px; } }
 
-.lang-toggle:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
+        .quiz-progress { margin-bottom: 22px; }
+        .quiz-progress .qp-text {
+            font-size: 0.72rem; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .quiz-progress .qp-bar {
+            width: 100%; height: 4px;
+            background: rgba(148,163,184,0.1);
+            border-radius: 2px; overflow: hidden;
+        }
+        .quiz-progress .qp-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 0 8px var(--accent);
+        }
 
-.manifesto {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 30px;
-  margin-bottom: 2rem;
-}
+        .quiz-question h3 {
+            font-size: 1.15rem; font-weight: 600;
+            line-height: 1.4; margin-bottom: 18px;
+        }
+        .quiz-option {
+            padding: 16px 20px; margin: 8px 0;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            cursor: pointer;
+            background: rgba(13,18,37,0.4);
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+        .quiz-option:hover {
+            border-color: var(--accent);
+            background: rgba(96,165,250,0.06);
+            transform: translateY(-1px);
+        }
+        .quiz-option:active { transform: translateY(0); }
 
-.manifesto p {
-  color: var(--text-dim);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin: 0 0 1rem 0;
-}
+        /* Quiz Intro */
+        .quiz-intro { text-align: center; }
+        .quiz-intro p {
+            color: var(--muted); font-size: 0.95rem;
+            max-width: 580px; margin: 0 auto 18px;
+            line-height: 1.6;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 36px;
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            background: transparent;
+            color: var(--accent);
+            font-size: 1rem; font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+        .btn-primary:hover {
+            background: var(--accent);
+            color: var(--bg);
+            box-shadow: 0 0 20px rgba(96,165,250,0.15);
+        }
 
-.manifesto p:last-child { margin-bottom: 0; }
+        /* Quiz Results */
+        .quiz-result-title {
+            font-size: 1.2rem; font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .quiz-result-sub {
+            color: var(--muted); font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
+        .result-block {
+            margin-bottom: 18px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .result-block:last-child { border: none; }
+        .result-q {
+            font-size: 0.85rem; font-weight: 600;
+            margin-bottom: 8px; color: var(--text);
+        }
+        .result-your, .result-my {
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin: 6px 0;
+            font-size: 0.85rem;
+        }
+        .result-your {
+            border-left: 3px solid var(--accent);
+            background: rgba(96,165,250,0.04);
+        }
+        .result-my {
+            border-left: 3px solid var(--accent3);
+            background: rgba(52,211,153,0.04);
+        }
+        .result-your .rl, .result-my .rl {
+            font-size: 0.65rem; text-transform: uppercase;
+            letter-spacing: 0.5px; font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .result-your .rl { color: var(--accent); }
+        .result-my .rl { color: var(--accent3); }
 
-.manifesto strong { color: var(--text-main); }
+        .align-badge {
+            display: inline-block;
+            padding: 2px 8px; border-radius: 4px;
+            font-size: 0.65rem; font-weight: 600;
+            margin-top: 6px;
+        }
+        .align-high { background: var(--green-bg); color: var(--green-text); }
+        .align-partial { background: var(--yellow-bg); color: var(--yellow-text); }
+        .align-low { background: var(--red-bg); color: var(--red-text); }
 
-.progress-container {
-  width: 100%;
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
-  margin-bottom: 2rem;
-  overflow: hidden;
-}
+        .result-explanation {
+            font-size: 0.82rem; color: var(--muted);
+            margin-top: 6px; font-style: italic;
+            border-top: 1px solid var(--card-border);
+            padding-top: 6px;
+        }
 
-.progress-bar {
-  height: 100%;
-  background: var(--accent);
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 10px var(--accent);
-}
+        .result-match {
+            padding: 14px;
+            border: 1px solid var(--accent3);
+            border-radius: 8px;
+            background: rgba(52,211,153,0.04);
+            margin: 8px 0;
+        }
+        .result-match .rm-label {
+            font-size: 0.7rem; font-weight: 600;
+            color: var(--accent3); text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 4px;
+        }
+        .result-match .rm-text { font-size: 0.85rem; color: var(--text); }
 
-.progress-text {
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  display: block;
-}
+        .result-summary {
+            font-size: 1rem; color: var(--text);
+            margin: 18px 0;
+            line-height: 1.6;
+        }
 
-.option {
-  padding: 20px 24px;
-  margin: 12px 0;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  cursor: pointer;
-  background: var(--card-bg);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 1rem;
-  color: var(--text-main);
-}
+        .result-form { margin: 16px 0 10px; }
+        .result-form .rf-row {
+            display: flex; flex-wrap: wrap; gap: 10px;
+            margin-bottom: 14px;
+        }
+        .result-form .rf-row input {
+            flex: 1; min-width: 180px;
+            padding: 10px 14px;
+            background: rgba(13,18,37,0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+        .result-form .rf-row input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .result-form .rf-row input::placeholder { color: var(--muted); opacity: 0.5; }
 
-.option:hover {
-  border-color: var(--accent);
-  background: #1c1c21;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5), 0 0 15px var(--accent-glow);
-}
+        .result-form .rf-actions {
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+        }
+        .btn-submit {
+            padding: 10px 24px;
+            border: none; border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            font-weight: 500; font-size: 0.85rem;
+            cursor: pointer; font-family: inherit;
+            transition: all 0.2s ease;
+        }
+        .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(96,165,250,0.2); }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-.option:active { transform: translateY(0); }
+        .btn-skip {
+            background: none; border: none;
+            color: var(--muted); font-size: 0.8rem;
+            cursor: pointer; font-family: inherit;
+            transition: color 0.2s;
+            padding: 6px 10px;
+        }
+        .btn-skip:hover { color: var(--text); }
 
-.btn-primary {
-  display: inline-block;
-  padding: 16px 40px;
-  border: 1px solid var(--accent);
-  border-radius: 12px;
-  background: transparent;
-  color: var(--accent);
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  font-family: inherit;
-  width: 100%;
-  max-width: 280px;
-}
+        .result-success {
+            padding: 16px;
+            border: 1px solid var(--accent3);
+            border-radius: 8px;
+            background: rgba(52,211,153,0.04);
+            text-align: center;
+            color: var(--accent3);
+            font-weight: 500;
+            margin: 12px 0;
+        }
 
-.btn-primary:hover:not(:disabled) {
-  background: var(--accent);
-  color: var(--bg);
-  box-shadow: 0 0 20px var(--accent-glow);
-}
+        .result-footer-text {
+            margin-top: 16px;
+            font-size: 0.78rem; color: var(--muted);
+            font-style: italic; text-align: center;
+            opacity: 0.7;
+        }
 
-.btn-primary:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  border-color: var(--border);
-  color: var(--text-dim);
-}
+        /* PILLARS */
+        .pillars {
+            width: 100%; max-width: 950px;
+            margin: 10px 0 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .pillar {
+            padding: 20px 18px;
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            text-align: center;
+            transition: all 0.25s ease;
+        }
+        .pillar:hover {
+            border-color: rgba(96,165,250,0.2);
+            transform: translateY(-2px);
+        }
+        .pillar .icon { font-size: 1.6rem; margin-bottom: 8px; }
+        .pillar h3 { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+        .pillar p { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
 
-.btn-center {
-  text-align: center;
-  margin-top: 2rem;
-}
+        /* CARRUSEL */
+        .section-label {
+            font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--accent);
+            text-align: center; margin-bottom: 14px; font-weight: 600;
+        }
+        .carousel-container {
+            position: relative; width: 100%; max-width: 950px;
+            margin: 0 0 10px;
+        }
+        .carousel {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            scrollbar-width: none; scroll-behavior: smooth;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+        .carousel-card {
+            flex: 0 0 100%; scroll-snap-align: start;
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 36px 38px;
+            display: flex; flex-direction: column;
+            min-height: 500px;
+        }
+        @media(max-width:600px){ .carousel-card{ padding:22px 18px; min-height:460px; } }
+        .card-header {
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 14px;
+        }
+        .card-header .card-num {
+            font-size: 0.7rem; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 1px;
+            font-weight: 600; margin-bottom: 4px;
+        }
+        .card-header .card-title { font-size: 1.25rem; font-weight: 600; color: var(--text); }
+        .card-header .card-sub { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+        .card-capabilities {
+            display: flex; flex-wrap: wrap; gap: 5px;
+            margin-bottom: 14px;
+        }
+        .cap-tag {
+            font-size: 0.65rem; font-weight: 600;
+            padding: 3px 10px; border-radius: 4px;
+            background: rgba(96,165,250,0.06);
+            border: 1px solid rgba(96,165,250,0.1);
+            color: rgba(96,165,250,0.7);
+            text-transform: uppercase; letter-spacing: 0.3px;
+        }
+        .card-story { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+        .story-block {
+            padding: 12px 16px;
+            background: rgba(13,18,37,0.5);
+            border-radius: 8px;
+            border-left: 3px solid var(--muted);
+        }
+        .story-block.sb-context { border-left-color: var(--muted); }
+        .story-block.sb-leadership { border-left-color: var(--accent); }
+        .story-block.sb-impact { border-left-color: var(--accent3); }
+        .story-block .sb-title {
+            font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 0.5px; font-weight: 600;
+            margin-bottom: 3px;
+        }
+        .sb-context .sb-title { color: var(--muted); }
+        .sb-leadership .sb-title { color: var(--accent); }
+        .sb-impact .sb-title { color: var(--accent3); }
+        .story-block .sb-text { font-size: 0.88rem; color: #e2e8f0; line-height: 1.5; }
+        .sb-metrics { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; }
+        .sb-metric { display: flex; align-items: center; gap: 5px; font-size: 0.81rem; }
+        .sb-metric .val { font-weight: 700; color: var(--accent3); }
+        .sb-metric .desc { color: var(--muted); }
+        .dots-container {
+            display: flex; justify-content: center; align-items: center;
+            gap: 8px; margin: 14px 0 8px;
+        }
+        .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(148,163,184,0.15);
+            border: none; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .dot.active {
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(96,165,250,0.3);
+            width: 24px; border-radius: 4px;
+        }
+        .dot:hover { background: rgba(96,165,250,0.3); }
+        .nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(17,25,45,0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--card-border);
+            color: var(--text);
+            width: 44px; height: 44px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; z-index: 10;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            opacity: 1; visibility: visible;
+        }
+        .nav-btn:hover {
+            background: var(--accent); color: var(--bg);
+            border-color: var(--accent);
+            transform: translateY(-50%) scale(1.06);
+        }
+        .nav-btn.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .prev-btn { left: -56px; }
+        .next-btn { right: -56px; }
+        @media(max-width:1060px) {
+            .nav-btn { position: static; transform: none; }
+            .nav-btn:hover { transform: scale(1.06); }
+            .btn-container { display: flex; gap: 14px; justify-content: center; margin-top: 8px; }
+            .nav-btn.hidden { opacity: 0.15; visibility: visible; pointer-events: none; }
+        }
 
-.result-card {
-  background: var(--card-bg);
-  padding: 30px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-}
+        /* GOVERNANCE */
+        .governance {
+            width: 100%; max-width: 950px;
+            margin: 20px 0 10px;
+            padding: 28px 32px;
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+        }
+        .governance h2 {
+            font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--accent);
+            margin-bottom: 14px; font-weight: 600;
+            text-align: center;
+        }
+        .gov-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        @media(max-width:700px){ .gov-grid{ grid-template-columns:repeat(2,1fr); } }
+        @media(max-width:440px){ .gov-grid{ grid-template-columns:1fr; } }
+        .gov-item {
+            padding: 14px;
+            background: rgba(13,18,37,0.4);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .gov-item .icon { font-size: 1.3rem; margin-bottom: 4px; }
+        .gov-item h4 { font-size: 0.78rem; font-weight: 600; margin-bottom: 2px; }
+        .gov-item p { font-size: 0.72rem; color: var(--muted); line-height: 1.3; }
 
-.block {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
-}
+        /* CTA */
+        .cta-section {
+            width: 100%; max-width: 950px;
+            margin: 20px 0 0;
+            text-align: center;
+            padding: 34px 24px;
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+        }
+        .cta-section h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; }
+        .cta-section p {
+            color: var(--muted); font-size: 0.9rem;
+            margin-bottom: 18px; max-width: 550px; margin-inline: auto;
+        }
+        .cta-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 11px 22px; border-radius: 8px;
+            font-weight: 500; font-size: 0.85rem;
+            text-decoration: none; transition: all 0.2s ease;
+            border: none; cursor: pointer;
+        }
+        .cta-btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+        }
+        .cta-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(96,165,250,0.2);
+        }
+        .cta-btn.secondary {
+            background: rgba(148,163,184,0.06);
+            border: 1px solid var(--card-border);
+            color: var(--text);
+        }
+        .cta-btn.secondary:hover {
+            background: rgba(148,163,184,0.12);
+            transform: translateY(-2px);
+        }
 
-.block:last-child { border: none; }
+        .footer-quote {
+            width: 100%; max-width: 700px;
+            margin: 28px auto 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.6;
+            opacity: 0.7;
+        }
+        .footer-bar {
+            width: 100%; text-align: center;
+            padding: 18px 0 5px;
+            font-size: 0.7rem; color: rgba(148,163,184,0.2);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
 
-.alignment-badge {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  font-weight: bold;
-  margin-top: 10px;
-}
+        /* ANIMATIONS */
+        .fade-in {
+            opacity: 0; transform: translateY(18px);
+            animation: fadeUp 0.55s ease forwards;
+        }
+        .fade-in-d1 { animation-delay: 0.1s; }
+        .fade-in-d2 { animation-delay: 0.2s; }
+        .fade-in-d3 { animation-delay: 0.3s; }
+        @keyframes fadeUp { to{ opacity:1; transform:translateY(0); } }
 
-.high { background: var(--green-bg); color: var(--green-text); }
-.partial { background: var(--yellow-bg); color: var(--yellow-text); }
-.low { background: var(--red-bg); color: var(--red-text); }
+        .carousel-card { opacity: 0; }
+        .carousel-card.visible { animation: fadeUp 0.45s ease forwards; }
 
-.explanation {
-  color: var(--text-dim);
-  font-size: 0.95rem;
-  white-space: pre-line;
-  margin: 15px 0;
-}
+        .fade-quiz { animation: fadeUp 0.45s ease forwards; }
 
-.explanation strong { color: var(--text-main); }
-
-.result-summary {
-  font-size: 1.1rem;
-  color: var(--text-main);
-  line-height: 1.7;
-  margin: 15px 0;
-}
-
-.your-answer {
-  margin: 12px 0 8px 0;
-  padding: 12px 16px;
-  border-left: 3px solid var(--accent);
-  background: rgba(0, 212, 255, 0.05);
-  border-radius: 0 8px 8px 0;
-}
-
-.your-answer-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--accent);
-  margin-bottom: 4px;
-}
-
-.your-answer-text {
-  color: var(--text-main);
-  font-size: 0.95rem;
-}
-
-.best-option {
-  margin: 12px 0;
-  padding: 12px 16px;
-  border-left: 3px solid var(--green-text);
-  background: rgba(52, 211, 153, 0.05);
-  border-radius: 0 8px 8px 0;
-}
-
-.best-option-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--green-text);
-  margin-bottom: 4px;
-}
-
-.best-option-text {
-  color: var(--text-main);
-  font-size: 0.95rem;
-}
-
-.feedback-text {
-  color: var(--text-dim);
-  font-style: italic;
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid var(--border);
-}
-
-.match-block {
-  margin: 12px 0;
-  padding: 16px;
-  border: 1px solid var(--green-text);
-  border-radius: 12px;
-  background: rgba(52, 211, 153, 0.06);
-}
-
-.match-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--green-text);
-  margin-bottom: 8px;
-}
-
-.match-text {
-  color: var(--text-main);
-  font-size: 0.95rem;
-  margin-bottom: 4px;
-}
-
-.cta-section {
-  margin-top: 2.5rem;
-  padding: 25px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.01), transparent);
-  text-align: left;
-}
-
-.cta-section p {
-  color: var(--text-dim);
-  margin: 0 0 1.5rem 0;
-  text-align: center;
-}
-
-.form-group {
-  margin-bottom: 1.2rem;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  margin-bottom: 6px;
-}
-
-.form-control {
-  width: 100%;
-  padding: 12px 16px;
-  background: #0d0d11;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text-main);
-  font-family: inherit;
-  font-size: 0.95rem;
-  transition: border-color 0.2s;
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.success-message {
-  padding: 20px;
-  border: 1px solid var(--green-text);
-  background: rgba(52, 211, 153, 0.05);
-  border-radius: 12px;
-  text-align: center;
-  color: var(--green-text);
-  font-weight: 500;
-}
-
-.restart-area {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.btn-restart {
-  display: inline-block;
-  padding: 10px 28px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: transparent;
-  color: var(--text-dim);
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: inherit;
-}
-
-.btn-restart:hover {
-  border-color: var(--text-dim);
-  color: var(--text-main);
-}
-
-.footer {
-  margin-top: 50px;
-  text-align: center;
-  color: var(--text-dim);
-  font-size: 0.85rem;
-  opacity: 0.6;
-}
-
-.fade {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 480px) {
-  #app { width: 95%; }
-  .option { padding: 16px; font-size: 0.95rem; }
-  .result-card { padding: 20px; }
-  .manifesto { padding: 20px; }
-  .lang-toggle { top: 10px; right: 10px; padding: 6px 12px; font-size: 0.75rem; }
-}
-</style>
+        @media(max-width:600px) {
+            .wrapper { padding: 16px 12px; }
+            .hero { padding: 20px 6px; }
+            .hero-stats { gap: 18px; }
+            .hero-stat .num { font-size: 1.3rem; }
+            .card-header .card-title { font-size: 1.05rem; }
+            .story-block .sb-text { font-size: 0.82rem; }
+            .philosophy { padding: 20px 16px; }
+            .philosophy blockquote { font-size: 0.9rem; }
+            .quiz-card { padding: 20px 16px; }
+            .quiz-question h3 { font-size: 1rem; }
+            .quiz-option { font-size: 0.88rem; padding: 14px 16px; }
+            .governance { padding: 20px 16px; }
+            .pillars { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+            .cta-section { padding: 24px 16px; }
+        }
+    </style>
 </head>
 <body>
 
-<button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
-<div id="app"></div>
+<div id="particles"></div>
+<button id="scrollTop" aria-label="Back to top">↑</button>
+
+<div class="wrapper">
+
+    <!-- HERO -->
+    <header class="hero fade-in">
+        <div class="hero-availability">
+            <span class="pulse"></span>
+            Currently evaluating AI Strategy &amp; Enablement Lead opportunities
+        </div>
+        <h1>
+            <span class="name">Guillermo</span>
+            <span class="role">AI Strategy &amp; Enablement Lead</span>
+        </h1>
+        <p class="tagline">
+            I design AI strategy, lead adoption, and govern solutions end to end.<br>
+            I've spent 11+ years turning chaotic operations into autonomous systems.
+        </p>
+        <div class="keyword-strip">
+            <span class="keyword">Generative AI</span>
+            <span class="keyword">Automation</span>
+            <span class="keyword">AI Governance</span>
+            <span class="keyword">Strategy &amp; Roadmap</span>
+            <span class="keyword">Digital Transformation</span>
+            <span class="keyword">Systems Architecture</span>
+            <span class="keyword">Adoption &amp; Enablement</span>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="num">11+</div>
+                <div class="label">Years leading transformation</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num">6</div>
+                <div class="label">Production systems designed</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num">80%</div>
+                <div class="label">Backlog reduction achieved</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num">100%</div>
+                <div class="label">Critical processes automated</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PHILOSOPHY -->
+    <div class="philosophy fade-in fade-in-d1">
+        <div class="marker">My philosophy</div>
+        <blockquote>
+            The best Solution Architects I've met didn't have the most expensive certification or the largest team.
+            They had something better: years of solving real problems, vision to anticipate failure,
+            and the ability to make things work when everything else fails.
+            <cite>— That doesn't show on a resume. It shows in how you think and act under pressure.</cite>
+        </blockquote>
+    </div>
+
+    <!-- ─── QUIZ SECTION ─── -->
+    <section class="quiz-section fade-in fade-in-d2" id="quizSection">
+        <p class="section-label">How I think</p>
+        <div class="quiz-card" id="quizApp"></div>
+    </section>
+
+    <!-- PILLARS -->
+    <div class="pillars fade-in fade-in-d3">
+        <div class="pillar">
+            <div class="icon">🎯</div>
+            <h3>Strategy &amp; Roadmap</h3>
+            <p>Diagnosis, prioritization, and AI adoption roadmap aligned to business outcomes.</p>
+        </div>
+        <div class="pillar">
+            <div class="icon">🧠</div>
+            <h3>GenAI &amp; Automation</h3>
+            <p>Design, prototyping, and deployment of GenAI solutions with RAG architecture and LLMs.</p>
+        </div>
+        <div class="pillar">
+            <div class="icon">🛡️</div>
+            <h3>Governance &amp; Compliance</h3>
+            <p>AI governance frameworks, privacy, ethics, and model risk management aligned to regulations.</p>
+        </div>
+        <div class="pillar">
+            <div class="icon">🤝</div>
+            <h3>Enablement &amp; Adoption</h3>
+            <p>Training, documentation, and knowledge transfer to scale AI capabilities across teams.</p>
+        </div>
+    </div>
+
+    <!-- CASE STUDIES -->
+    <p class="section-label fade-in fade-in-d3">Leadership in action</p>
+
+    <div class="carousel-container fade-in fade-in-d3">
+        <button class="nav-btn prev-btn hidden" id="prevBtn" aria-label="Previous">‹</button>
+        <div class="carousel" id="carousel">
+
+            <div class="carousel-card">
+                <div class="card-header">
+                    <div class="card-num">Leadership in action</div>
+                    <div class="card-title">🧭 From strategy to execution</div>
+                    <div class="card-sub">Six real cases showing how I lead AI adoption, automation, and systems transformation — not from an ivory tower, but from the trench.</div>
+                </div>
+                <div class="card-story" style="justify-content:center;text-align:center;gap:12px;">
+                    <p style="color:var(--muted);font-size:0.9rem;max-width:600px;margin:0 auto;">
+                        Each case breaks down the <strong>context</strong>, my <strong>leadership</strong> approach, and the <strong>measurable impact</strong> it delivered.
+                    </p>
+                    <p style="color:var(--muted);font-size:0.8rem;opacity:0.6;margin-top:8px;">
+                        ← Navigate with arrows or swipe →
+                    </p>
+                </div>
+            </div>
+
+            <div class="carousel-card">
+                <div class="card-header">
+                    <div class="card-num">Case 1</div>
+                    <div class="card-title">🤖 Generative AI Adoption Program</div>
+                    <div class="card-sub">Strategy, prototyping, and team enablement for conversational AI</div>
+                </div>
+                <div class="card-capabilities">
+                    <span class="cap-tag">AI Strategy</span>
+                    <span class="cap-tag">LLM / RAG</span>
+                    <span class="cap-tag">Prototyping</span>
+                    <span class="cap-tag">Enablement</span>
+                    <span class="cap-tag">Architecture</span>
+                </div>
+                <div class="card-story">
+                    <div class="story-block sb-context">
+                        <div class="sb-title">Context</div>
+                        <div class="sb-text">L1 Service Desk was saturated. L2 agents spent hours on repetitive queries. No AI strategy existed — nobody had explored technical feasibility.</div>
+                    </div>
+                    <div class="story-block sb-leadership">
+                        <div class="sb-title">My leadership</div>
+                        <div class="sb-text">I led the AI adoption strategy from scratch. Set up an on-prem lab to test feasibility, designed the RAG architecture with local LLMs and real service documentation. Built the functional demo and presented the business case to management — enabling the investment decision.</div>
+                    </div>
+                    <div class="story-block sb-impact">
+                        <div class="sb-title">Impact</div>
+                        <div class="sb-text">Demonstrated drastic reduction in L1 resolution times and autonomous deflection of repetitive L2 queries. Established the technical and strategic foundation for governed, scalable AI adoption.</div>
+                        <div class="sb-metrics" style="margin-top:8px;">
+                            <div class="sb-metric"><span>📉</span><span class="val">-70%</span><span class="desc">estimated L1 resolution time</span></div>
+                            <div class="sb-metric"><span>🤖</span><span class="val">100%</span><span class="desc">repetitive queries deflected</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-card">
+                <div class="card-header">
+                    <div class="card-num">Case 2</div>
+                    <div class="card-title">⏳ Digital Operations Transformation</div>
+                    <div class="card-sub">Technical leadership and team enablement to eliminate operational chaos</div>
+                </div>
+                <div class="card-capabilities">
+                    <span class="cap-tag">Digital Transformation</span>
+                    <span class="cap-tag">Tech Leadership</span>
+                    <span class="cap-tag">Software Factory</span>
+                </div>
+                <div class="card-story">
+                    <div class="story-block sb-context">
+                        <div class="sb-title">Context</div>
+                        <div class="sb-text">Severe organizational chaos: two physical screens to monitor breaks for the entire technical team. Manual process, no traceability, no ability to scale.</div>
+                    </div>
+                    <div class="story-block sb-leadership">
+                        <div class="sb-title">My leadership</div>
+                        <div class="sb-text">I identified the transformation opportunity, designed the solution, and led development end to end — from self-taught VB.NET to a production system with a network database, clean UI, and concurrency logic. Transferred knowledge to the team for daily operations.</div>
+                    </div>
+                    <div class="story-block sb-impact">
+                        <div class="sb-title">Impact</div>
+                        <div class="sb-text">Total eradication of the inefficient legacy system. The solution managed the entire team's daily breaks for years in production, freeing capacity for higher-value work.</div>
+                        <div class="sb-metrics" style="margin-top:8px;">
+                            <div class="sb-metric"><span>✅</span><span class="val">100%</span><span class="desc">operational chaos eliminated</span></div>
+                            <div class="sb-metric"><span>👥</span><span class="val">Full team</span><span class="desc">enabled and autonomous</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-card">
+                <div class="card-header">
+                    <div class="card-num">Case 3</div>
+                    <div class="card-title">⚡ Strategic Provisioning Automation</div>
+                    <div class="card-sub">Autonomous system architecture to eliminate manual intervention</div>
+                </div>
+                <div class="card-capabilities">
+                    <span class="cap-tag">Automation</span>
+                    <span class="cap-tag">Architecture</span>
+                    <span class="cap-tag">SQL / ETL</span>
+                    <span class="cap-tag">Data Governance</span>
+                </div>
+                <div class="card-story">
+                    <div class="story-block sb-context">
+                        <div class="sb-title">Context</div>
+                        <div class="sb-text">Manual, slow, error-prone provisioning of external users on shared SharePoint systems. Hours of operational work every week.</div>
+                    </div>
+                    <div class="story-block sb-leadership">
+                        <div class="sb-title">My leadership</div>
+                        <div class="sb-text">I designed a comprehensive automation architecture: migration to a relational SQL engine, ETL pipelines for ingestion and processing, secure credential generation, and automated notifications. Established process governance for traceability and compliance.</div>
+                    </div>
+                    <div class="story-block sb-impact">
+                        <div class="sb-title">Impact</div>
+                        <div class="sb-text">Provisioning went from hours of manual intervention to fully autonomous execution with zero errors. Exponential improvement in operational efficiency.</div>
+                        <div class="sb-metrics" style="margin-top:8px;">
+                            <div class="sb-metric"><span>⚡</span><span class="val">100%</span><span class="desc">automated · zero intervention</span></div>
+                            <div class="sb-metric"><span>⏱️</span><span class="val">Hours → seconds</span><span class="desc">provisioning time</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-card">
+                <div class="card-header">
+                    <div class="card-num">Case 4</div>
+                    <div class="card-title">📁 IT Operations Optimization</div>
+                    <div class="card-sub">Tooling unification and bottleneck elimination through technical leadership</div>
+                </div>
+                <div class="card-capabilities">
+                    <span class="cap-tag">Optimization</span>
+                    <span class="cap-tag">Tooling Strategy</span>
+                    <span class="cap-tag">Automation</span>
+                </div>
+                <div class="card-story">
+                    <div class="story-block sb-context">
+                        <div class="sb-title">Context</div>
+                        <div class="sb-text">Critical backlog in network permissions management. Operations depended on two virtual machines, creating a bottleneck that paralyzed the support team.</div>
+                    </div>
+                    <div class="story-block sb-leadership">
+                        <div class="sb-title">My leadership</div>
+                        <div class="sb-text">I analyzed the network flow, designed a strategy to externalize permission management, and led the development of a unified application that eliminated VM dependency. Redesigned the team's workflow and enabled agents to operate autonomously.</div>
+                    </div>
+                    <div class="story-block sb-impact">
+                        <div class="sb-title">Impact</div>
+                        <div class="sb-text">Immediate backlog reduction of over 80%. The team went from being blocked by technical bottlenecks to operating with high efficiency and full autonomy.</div>
+                        <div class="sb-metrics" style="margin-top:8px;">
+                            <div class="sb-metric"><span>📉</span><span class="val">-80%</span><span class="desc">permissions backlog eliminated</span></div>
+                            <div class="sb-metric"><span>🚀</span><span class="val">2x</span><span class="desc">team efficiency gain</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-card">
+                <div class="card-header">
+                    <div class="card-num">Case 5 · R&amp;D</div>
+                    <div class="card-title">🛰️ Strategic Observability with AI</div>
+                    <div class="card-sub">Intelligent dashboard for proactive SLA monitoring</div>
+                </div>
+                <div class="card-capabilities">
+                    <span class="cap-tag">Observability</span>
+                    <span class="cap-tag">Web Scraping</span>
+                    <span class="cap-tag">Dashboard</span>
+                    <span class="cap-tag">Applied R&amp;D</span>
+                </div>
+                <div class="card-story">
+                    <div class="story-block sb-context">
+                        <div class="sb-title">Context</div>
+                        <div class="sb-text">The team operated reactively to Remedy incidents. No real-time visibility into SLA status, causing breaches and penalties.</div>
+                    </div>
+                    <div class="story-block sb-leadership">
+                        <div class="sb-title">My leadership</div>
+                        <div class="sb-text">I led an R&amp;D project to design an intelligent scraping engine that extracts Remedy metrics in real time. Architected the data consolidation backend and validated the concept with L2 engineers to ensure adoption. The project lays the groundwork for an AI-driven observability strategy.</div>
+                    </div>
+                    <div class="story-block sb-impact">
+                        <div class="sb-title">Expected impact</div>
+                        <div class="sb-text">Real-time dashboard with proactive alerts to prevent SLA breaches. Technical foundation to scale to predictive monitoring with ML models.</div>
+                        <div class="sb-metrics" style="margin-top:8px;">
+                            <div class="sb-metric"><span>📊</span><span class="val">Real-time</span><span class="desc">operational metrics dashboard</span></div>
+                            <div class="sb-metric"><span>🔔</span><span class="val">Proactive alerts</span><span class="desc">SLA breach prevention</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-card">
+                <div class="card-header">
+                    <div class="card-num">Next up</div>
+                    <div class="card-title">🚀 Your AI strategy starts here</div>
+                    <div class="card-sub">I lead AI adoption, automation, and transformation — not from an ivory tower, but from the trench.</div>
+                </div>
+                <div class="card-story" style="justify-content:center;text-align:center;gap:16px;">
+                    <p style="color:var(--muted);font-size:0.9rem;max-width:550px;margin:0 auto;">
+                        Need someone who designs the strategy, leads adoption, and enables your team
+                        to transform operations with AI and automation?
+                    </p>
+                    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;">
+                        <a href="https://www.linkedin.com/in/guillermo-cle-gonzalez-1180266a/" class="cta-btn secondary" target="_blank">
+                            <span>💼</span> LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <button class="nav-btn next-btn" id="nextBtn" aria-label="Next">›</button>
+    </div>
+
+    <div class="dots-container" id="dotsContainer"></div>
+    <div class="btn-container"></div>
+
+    <!-- GOVERNANCE -->
+    <div class="governance fade-in">
+        <h2>AI Governance &amp; Best Practices</h2>
+        <div class="gov-grid">
+            <div class="gov-item">
+                <div class="icon">🔐</div>
+                <h4>Privacy &amp; Data</h4>
+                <p>RAG architectures ensuring sensitive data never leaves the controlled perimeter.</p>
+            </div>
+            <div class="gov-item">
+                <div class="icon">⚖️</div>
+                <h4>Ethics &amp; Fairness</h4>
+                <p>Bias evaluation in models and transparency in automated decision-making.</p>
+            </div>
+            <div class="gov-item">
+                <div class="icon">📋</div>
+                <h4>Compliance &amp; Risk</h4>
+                <p>Governance frameworks aligned to EU AI Act, ISO 42001, and model risk management.</p>
+            </div>
+            <div class="gov-item">
+                <div class="icon">🔄</div>
+                <h4>MLOps &amp; Lifecycle</h4>
+                <p>Model lifecycle management: versioning, monitoring, retraining, and decommissioning.</p>
+            </div>
+            <div class="gov-item">
+                <div class="icon">📚</div>
+                <h4>Documentation &amp; Traceability</h4>
+                <p>Decision logs, data sources, and output auditing for every solution deployed.</p>
+            </div>
+            <div class="gov-item">
+                <div class="icon">🧑‍🏫</div>
+                <h4>Enablement &amp; Training</h4>
+                <p>AI literacy programs and knowledge transfer for scalable, responsible adoption.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <footer class="cta-section fade-in">
+        <h3>Let's build your AI strategy</h3>
+        <p>
+            If you're looking for a leader who designs, executes, and governs AI adoption and automation
+            at scale — someone who's been in the trench, not just the boardroom — let's talk.
+        </p>
+        <div class="cta-links">
+            <a href="https://www.linkedin.com/in/guillermo-cle-gonzalez-1180266a/" class="cta-btn secondary" target="_blank">
+                <span>💼</span> LinkedIn
+            </a>
+            <a href="mailto:willycle@gmail.com" class="cta-btn secondary" target="_blank">
+                <span>✉️</span> Contact
+            </a>
+        </div>
+    </footer>
+
+    <div class="footer-quote">
+        Experience isn't always visible in titles.<br>
+        It's obvious when systems start failing and someone knows exactly what to do.
+    </div>
+
+    <div class="footer-bar">AI Strategy &amp; Enablement Lead · Guillermo</div>
+
+</div>
 
 <script>
-let lang = 'es';
-let screen = 'intro';
-let current = 0;
-let answers = [];
+(function(){
+    // ─── QUIZ DATA ───
+    const questions = [
+        { q: { es: "Un sistema legacy sin documentación, tests ni dueño claro lleva años dando problemas. ¿Qué perfil de arquitecto crees que lo resolvería mejor?", en: "A legacy system with no documentation, tests, or clear owner has been causing problems for years. What architect profile would solve it best?" },
+          options: [
+            { value: 0, text: { es: "Uno con certificaciones TOGAF y experiencia liderando equipos grandes en entornos estables", en: "One with TOGAF certifications and experience leading large teams in stable environments" } },
+            { value: 1, text: { es: "Uno con experiencia mixta: ha liderado equipos pero también ha trabajado directamente con sistemas legacy", en: "One with mixed experience: has led teams but also worked directly with legacy systems" } },
+            { value: 2, text: { es: "Uno que ha resuelto problemas reales en sistemas legacy, aunque no tenga certificaciones ni haya liderado grandes equipos", en: "One who has solved real problems in legacy systems, even without certifications or large team leadership experience" } }
+          ],
+          bestExplanation: { es: "El mejor perfil para un sistema legacy sin dueño es alguien que ya ha resuelto problemas reales en ese contexto. Las certificaciones y la experiencia jerárquica no preparan para el caos de un sistema abandonado. Solo la experiencia práctica en trinchera enseña a navegar ese tipo de situaciones.", en: "The best profile for an ownerless legacy system is someone who has already solved real problems in that context. Certifications and hierarchical experience don't prepare you for the chaos of an abandoned system. Only hands-on experience teaches you to navigate those situations." } },
+        { q: { es: "Tres stakeholders clave tienen tres visiones distintas para el mismo proyecto. No hay acuerdo. ¿Qué enfoque del arquitecto da mejores resultados?", en: "Three key stakeholders have three different visions for the same project. There's no agreement. What architect approach delivers the best results?" },
+          options: [
+            { value: 0, text: { es: "Que elabore un plan detallado y espere a tener aprobación unificada antes de empezar", en: "Create a detailed plan and wait for unified approval before starting" } },
+            { value: 1, text: { es: "Que busque un compromiso equilibrado entre las tres posturas antes de ejecutar", en: "Seek a balanced compromise between the three positions before executing" } },
+            { value: 2, text: { es: "Que construya un prototipo funcional pequeño y use datos reales para desbloquear la decisión", en: "Build a small functional prototype and use real data to unlock the decision" } }
+          ],
+          bestExplanation: { es: "Construir un prototipo funcional rápido desbloquea la decisión con datos reales en lugar de discusiones infinitas. Los mejores arquitectos no esperan consenso perfecto; crean evidencia que alinea a los stakeholders.", en: "Building a quick functional prototype unlocks the decision with real data instead of endless discussions. The best architects don't wait for perfect consensus; they create evidence that aligns stakeholders." } },
+        { q: { es: "El negocio exige entregar features rápido. El equipo quiere refactorizar deuda técnica. ¿Qué perfil de arquitecto navega mejor esta tensión?", en: "The business demands fast feature delivery. The team wants to refactor technical debt. What architect profile navigates this tension best?" },
+          options: [
+            { value: 0, text: { es: "El que defiende la calidad técnica por encima de todo, aunque el negocio se retrase", en: "One who defends technical quality above all, even if the business is delayed" } },
+            { value: 1, text: { es: "El que intenta contentar a ambas partes sin decantarse del todo", en: "One who tries to please both sides without fully committing" } },
+            { value: 2, text: { es: "El que entiende el contexto de negocio, prioriza deuda estratégica y negocia con datos", en: "One who understands business context, prioritizes strategic debt, and negotiates with data" } }
+          ],
+          bestExplanation: { es: "Un arquitecto efectivo entiende que la deuda técnica es estratégica. No toda deuda hay que pagarla, y no toda feature hay que entregarla ya. Negociar con datos y contexto de negocio es lo que realmente mueve proyectos hacia adelante.", en: "An effective architect understands that technical debt is strategic. Not all debt needs to be paid, and not every feature needs to be delivered now. Negotiating with data and business context is what truly moves projects forward." } },
+        { q: { es: "El CTO quiere adoptar una tecnología que nadie en el equipo domina. ¿Qué tipo de arquitecto es más valioso aquí?", en: "The CTO wants to adopt a technology that no one on the team masters. What type of architect is most valuable here?" },
+          options: [
+            { value: 0, text: { es: "El que insiste en contratar expertos externos o hacer formación oficial antes de empezar", en: "One who insists on hiring external experts or formal training before starting" } },
+            { value: 1, text: { es: "El que propone un piloto controlado mientras el equipo aprende en paralelo", en: "One who proposes a controlled pilot while the team learns in parallel" } },
+            { value: 2, text: { es: "El que primero cuestiona si esa tecnología es realmente necesaria, y si lo es, la adopta con iteraciones cortas aprendiendo sobre la marcha", en: "One who first questions whether the technology is truly necessary, and if so, adopts it with short iterations learning on the go" } }
+          ],
+          bestExplanation: { es: "La mejor respuesta es cuestionar primero si la tecnología es necesaria. Muchos equipos adoptan tecnología nueva sin necesidad real. Si realmente hace falta, el aprendizaje iterativo supera a la formación formal porque se aprende sobre problemas reales.", en: "The best answer is to first question whether the technology is necessary. Many teams adopt new tech without real need. If it's truly needed, iterative learning beats formal training because you learn on real problems." } },
+        { q: { es: "Te piden una decisión de arquitectura en 2 días con datos incompletos y mucha presión. ¿Qué perfil da la mejor respuesta?", en: "You're asked to make an architecture decision in 2 days with incomplete data and high pressure. What profile delivers the best response?" },
+          options: [
+            { value: 0, text: { es: "El que pide más tiempo hasta tener todos los datos antes de decidir", en: "One who asks for more time until all data is available before deciding" } },
+            { value: 1, text: { es: "El que toma una decisión conservadora y reversible mientras tanto", en: "One who makes a conservative, reversible decision in the meantime" } },
+            { value: 2, text: { es: "El que decide rápido con la información disponible, deja puntos de decisión abiertos, y ajusta cuando lleguen más datos", en: "One who decides quickly with available information, leaves decision points open, and adjusts when more data arrives" } }
+          ],
+          bestExplanation: { es: "En situaciones de presión con datos incompletos, decidir rápido con la información disponible y ajustar sobre la marcha es más valioso que paralizar el proyecto esperando certidumbre. La arquitectura es toma de decisiones continua, no un evento único.", en: "In high-pressure situations with incomplete data, deciding quickly with available information and adjusting on the fly is more valuable than paralyzing the project waiting for certainty. Architecture is continuous decision-making, not a one-time event." } }
+    ];
 
-const STORAGE_KEY = 'sa_quiz_state';
+    // ─── QUIZ STATE ───
+    let quizScreen = 'intro'; // intro | question | result
+    let quizCurrent = 0;
+    let quizAnswers = [];
+    let sessionId = '';
 
-function saveState() {
-  if (screen === 'intro') return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    screen, current, answers, lang
-  }));
-}
+    function genId(){ return 'sess_' + Date.now() + '_' + Math.random().toString(36).slice(2,9); }
 
-function clearState() {
-  localStorage.removeItem(STORAGE_KEY);
-}
+    function t(obj){ return obj ? obj.en : ''; }
 
-function restoreState() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return false;
-  try {
-    const state = JSON.parse(raw);
-    if (state.screen && (state.screen === 'quiz' || state.screen === 'result')) {
-      screen = state.screen;
-      current = state.current || 0;
-      answers = state.answers || [];
-      lang = state.lang || 'es';
-      return true;
-    }
-  } catch (_) {}
-  return false;
-}
-
-function tr(obj) {
-  return obj ? obj[lang] : '';
-}
-
-const questions = [
-  {
-    q: {
-      es: "Un sistema legacy sin documentación, tests ni dueño claro lleva años dando problemas. ¿Qué perfil de arquitecto crees que lo resolvería mejor?",
-      en: "A legacy system with no documentation, tests, or clear owner has been causing problems for years. What architect profile would solve it best?"
-    },
-    options: [
-      { value: 0, text: { es: "Uno con certificaciones TOGAF y experiencia liderando equipos grandes en entornos estables", en: "One with TOGAF certifications and experience leading large teams in stable environments" }, feedback: { es: "Las certificaciones y la experiencia jerárquica son útiles en entornos estables, pero no preparan para el caos de un sistema legacy sin dueño. Este perfil suele pedir recursos y tiempo que no existen.", en: "Certifications and hierarchical experience are useful in stable environments, but they don't prepare you for the chaos of an ownerless legacy system. This profile often asks for resources and time that don't exist." } },
-      { value: 1, text: { es: "Uno con experiencia mixta: ha liderado equipos pero también ha trabajado directamente con sistemas legacy", en: "One with mixed experience: has led teams but also worked directly with legacy systems" }, feedback: { es: "Es un perfil más equilibrado, pero la mezcla puede generar ambigüedad. En situaciones extremas, se necesita alguien que ya haya estado exactamente en ese escenario.", en: "A more balanced profile, but the mix can create ambiguity. In extreme situations, you need someone who has already been in that exact scenario." } },
-      { value: 2, text: { es: "Uno que ha resuelto problemas reales en sistemas legacy, aunque no tenga certificaciones ni haya liderado grandes equipos", en: "One who has solved real problems in legacy systems, even without certifications or large team leadership experience" }, feedback: { es: "Has identificado al perfil correcto. La experiencia práctica en sistemas legacy es insustituible. Quien ha sobrevivido al caos sabe cómo navegarlo.", en: "You've identified the right profile. Hands-on experience with legacy systems is irreplaceable. Those who have survived the chaos know how to navigate it." } }
-    ],
-    bestExplanation: {
-      es: "El mejor perfil para un sistema legacy sin dueño es alguien que ya ha resuelto problemas reales en ese contexto. Las certificaciones y la experiencia jerárquica no preparan para el caos de un sistema abandonado. Solo la experiencia práctica en trinchera enseña a navegar ese tipo de situaciones.",
-      en: "The best profile for an ownerless legacy system is someone who has already solved real problems in that context. Certifications and hierarchical experience don't prepare you for the chaos of an abandoned system. Only hands-on experience teaches you to navigate those situations."
-    }
-  },
-  {
-    q: {
-      es: "Tres stakeholders clave tienen tres visiones distintas para el mismo proyecto. No hay acuerdo. ¿Qué enfoque del arquitecto da mejores resultados?",
-      en: "Three key stakeholders have three different visions for the same project. There's no agreement. What architect approach delivers the best results?"
-    },
-    options: [
-      { value: 0, text: { es: "Que elabore un plan detallado y espere a tener aprobación unificada antes de empezar", en: "Create a detailed plan and wait for unified approval before starting" }, feedback: { es: "Esperar un plan detallado y consenso unificado antes de empezar suele paralizar proyectos. Los stakeholders rara vez se alinean sin evidencia concreta.", en: "Waiting for a detailed plan and unified consensus before starting usually paralyzes projects. Stakeholders rarely align without concrete evidence." } },
-      { value: 1, text: { es: "Que busque un compromiso equilibrado entre las tres posturas antes de ejecutar", en: "Seek a balanced compromise between the three positions before executing" }, feedback: { es: "Buscar compromiso es razonable, pero a menudo termina en soluciones que no convencen a nadie. Se necesita algo más tangible para romper el estancamiento.", en: "Seeking compromise is reasonable, but it often ends in solutions that don't convince anyone. You need something more tangible to break the deadlock." } },
-      { value: 2, text: { es: "Que construya un prototipo funcional pequeño y use datos reales para desbloquear la decisión", en: "Build a small functional prototype and use real data to unlock the decision" }, feedback: { es: "Has elegido bien. Un prototipo funcional crea desbloqueo con datos reales. Es la forma más rápida de alinear posturas enfrentadas.", en: "Good choice. A functional prototype creates alignment with real data. It's the fastest way to reconcile opposing positions." } }
-    ],
-    bestExplanation: {
-      es: "Construir un prototipo funcional rápido desbloquea la decisión con datos reales en lugar de discusiones infinitas. Los mejores arquitectos no esperan consenso perfecto; crean evidencia que alinea a los stakeholders.",
-      en: "Building a quick functional prototype unlocks the decision with real data instead of endless discussions. The best architects don't wait for perfect consensus; they create evidence that aligns stakeholders."
-    }
-  },
-  {
-    q: {
-      es: "El negocio exige entregar features rápido. El equipo quiere refactorizar deuda técnica. ¿Qué perfil de arquitecto navega mejor esta tensión?",
-      en: "The business demands fast feature delivery. The team wants to refactor technical debt. What architect profile navigates this tension best?"
-    },
-    options: [
-      { value: 0, text: { es: "El que defiende la calidad técnica por encima de todo, aunque el negocio se retrase", en: "One who defends technical quality above all, even if the business is delayed" }, feedback: { es: "La calidad técnica es importante, pero ignorar las presiones del negocio hace que el arquitecto sea visto como un obstáculo. El arte está en equilibrar.", en: "Technical quality is important, but ignoring business pressures makes the architect seen as an obstacle. The art is in balancing." } },
-      { value: 1, text: { es: "El que intenta contentar a ambas partes sin decantarse del todo", en: "One who tries to please both sides without fully committing" }, feedback: { es: "No decantarse puede parecer seguro, pero en la práctica genera frustración en ambos lados. Se necesita criterio, no neutralidad.", en: "Not taking sides may seem safe, but in practice it creates frustration on both sides. You need criteria, not neutrality." } },
-      { value: 2, text: { es: "El que entiende el contexto de negocio, prioriza deuda estratégica y negocia con datos", en: "One who understands business context, prioritizes strategic debt, and negotiates with data" }, feedback: { es: "Excelente elección. La deuda técnica es estratégica y saber gestionarla con criterio de negocio es lo que distingue a un gran arquitecto.", en: "Excellent choice. Technical debt is strategic, and knowing how to manage it with business judgment is what sets a great architect apart." } }
-    ],
-    bestExplanation: {
-      es: "Un arquitecto efectivo entiende que la deuda técnica es estratégica. No toda deuda hay que pagarla, y no toda feature hay que entregarla ya. Negociar con datos y contexto de negocio es lo que realmente mueve proyectos hacia adelante.",
-      en: "An effective architect understands that technical debt is strategic. Not all debt needs to be paid, and not every feature needs to be delivered now. Negotiating with data and business context is what truly moves projects forward."
-    }
-  },
-  {
-    q: {
-      es: "El CTO quiere adoptar una tecnología que nadie en el equipo domina. ¿Qué tipo de arquitecto es más valioso aquí?",
-      en: "The CTO wants to adopt a technology that no one on the team masters. What type of architect is most valuable here?"
-    },
-    options: [
-      { value: 0, text: { es: "El que insiste en contratar expertos externos o hacer formación oficial antes de empezar", en: "One who insists on hiring external experts or formal training before starting" }, feedback: { es: "Contratar expertos o formarse antes de empezar suena seguro, pero ralentiza la adopción y asume que la tecnología es la correcta sin haberlo validado.", en: "Hiring experts or training before starting sounds safe, but it slows adoption and assumes the technology is correct without validation." } },
-      { value: 1, text: { es: "El que propone un piloto controlado mientras el equipo aprende en paralelo", en: "One who proposes a controlled pilot while the team learns in parallel" }, feedback: { es: "Un piloto controlado es mejor que nada, pero sin cuestionar primero si la tecnología es necesaria, corres el riesgo de optimizar algo que no debería existir.", en: "A controlled pilot is better than nothing, but without first questioning whether the technology is needed, you risk optimizing something that shouldn't exist." } },
-      { value: 2, text: { es: "El que primero cuestiona si esa tecnología es realmente necesaria, y si lo es, la adopta con iteraciones cortas aprendiendo sobre la marcha", en: "One who first questions whether the technology is truly necessary, and if so, adopts it with short iterations learning on the go" }, feedback: { es: "Has acertado. Cuestionar la necesidad real y luego iterar sobre problemas concretos es el enfoque más eficiente y menos riesgoso.", en: "You're right. Questioning the real need and then iterating on concrete problems is the most efficient and least risky approach." } }
-    ],
-    bestExplanation: {
-      es: "La mejor respuesta es cuestionar primero si la tecnología es necesaria. Muchos equipos adoptan tecnología nueva sin necesidad real. Si realmente hace falta, el aprendizaje iterativo supera a la formación formal porque se aprende sobre problemas reales.",
-      en: "The best answer is to first question whether the technology is necessary. Many teams adopt new tech without real need. If it's truly needed, iterative learning beats formal training because you learn on real problems."
-    }
-  },
-  {
-    q: {
-      es: "Te piden una decisión de arquitectura en 2 días con datos incompletos y mucha presión. ¿Qué perfil da la mejor respuesta?",
-      en: "You're asked to make an architecture decision in 2 days with incomplete data and high pressure. What profile delivers the best response?"
-    },
-    options: [
-      { value: 0, text: { es: "El que pide más tiempo hasta tener todos los datos antes de decidir", en: "One who asks for more time until all data is available before deciding" }, feedback: { es: "Pedir más tiempo cuando hay presión suele ser la opción más segura para el arquitecto, pero la peor para el proyecto. La parálisis por análisis es real.", en: "Asking for more time under pressure is usually the safest option for the architect, but the worst for the project. Analysis paralysis is real." } },
-      { value: 1, text: { es: "El que toma una decisión conservadora y reversible mientras tanto", en: "One who makes a conservative, reversible decision in the meantime" }, feedback: { es: "Una decisión conservadora y reversible es mejor que no decidir, pero puede quedarse corta cuando se necesita avanzar con determinación.", en: "A conservative, reversible decision is better than no decision, but it can fall short when you need to move forward with determination." } },
-      { value: 2, text: { es: "El que decide rápido con la información disponible, deja puntos de decisión abiertos, y ajusta cuando lleguen más datos", en: "One who decides quickly with available information, leaves decision points open, and adjusts when more data arrives" }, feedback: { es: "Perfecto. Decidir con datos incompletos y ajustar sobre la marcha es exactamente lo que se necesita en arquitectura real. No hay certidumbre perfecta.", en: "Perfect. Deciding with incomplete data and adjusting on the fly is exactly what real architecture requires. There is no perfect certainty." } }
-    ],
-    bestExplanation: {
-      es: "En situaciones de presión con datos incompletos, decidir rápido con la información disponible y ajustar sobre la marcha es más valioso que paralizar el proyecto esperando certidumbre. La arquitectura es toma de decisiones continua, no un evento único.",
-      en: "In high-pressure situations with incomplete data, deciding quickly with available information and adjusting on the fly is more valuable than paralyzing the project waiting for certainty. Architecture is continuous decision-making, not a one-time event."
-    }
-  }
-];
-
-const i18n = {
-  intro: {
-    es: {
-      p1: "<strong>Llevo años resolviendo problemas de arquitectura.</strong> He visto sistemas completos caerse, equipos bloqueados por decisiones técnicas mal tomadas, y proyectos salvarse por gente que sabía más de lo que sus títulos decían.",
-      p2: "También he visto reclutadores y CTOs descartar perfiles brillantes porque no tenían <em>el certificado correcto</em> o porque no habían <em>liderado equipos grandes</em>.",
-      p3: "Este test no es para candidatos. <strong>Es para quienes los evalúan.</strong> Las preguntas plantean situaciones reales de arquitectura. Tus respuestas revelarán si tu forma de evaluar talento está alineada con lo que realmente importa — o si estás dejando pasar perfiles que podrían salvar tu próximo proyecto.",
-      startBtn: "Comenzar evaluación",
-      step: "Pregunta"
-    },
-    en: {
-      p1: "<strong>I've spent years solving architecture problems.</strong> I've seen complete systems crash, teams blocked by bad technical decisions, and projects saved by people who knew more than their titles suggested.",
-      p2: "I've also seen recruiters and CTOs dismiss brilliant profiles because they didn't have <em>the right certification</em> or hadn't <em>led large teams</em>.",
-      p3: "This test is not for candidates. <strong>It's for those who evaluate them.</strong> The questions present real architecture situations. Your answers will reveal whether your talent evaluation is aligned with what really matters — or if you're passing on profiles that could save your next project.",
-      startBtn: "Start evaluation",
-      step: "Question"
-    }
-  },
-  result: {
-    es: {
-      profile_kind: "Ojo clínico",
-      profile_mixed: "Criterio mixto",
-      profile_bias: "Sesgo credencial",
-      summary_kind: "Valoras la capacidad de ejecución real por encima de los títulos. Identificas talento donde otros ven carencias. Este es el perfil de quien entiende que la arquitectura se demuestra resolviendo problemas, no coleccionando certificados.",
-      summary_mixed: "Tu criterio es inconsistente. A veces valoras lo práctico, otras veces te dejas llevar por credenciales. Esto puede hacer que descartes buenos candidatos o que contrates perfiles que lucen bien en papel pero no rinden en la realidad.",
-      summary_bias: "Priorizas las credenciales formales y la experiencia jerárquica. En entornos estables y predecibles funciona. Pero en proyectos complejos, con incertidumbre y sistemas legacy — que es donde más se necesita un buen Solution Architect — este enfoque descarta sistemáticamente a los perfiles más valiosos.",
-      summary_default: "Tus respuestas no muestran un patrón claro. Puede que evalúes caso a caso, o que no tengas un criterio definido para identificar talento en arquitectura.",
-      section_your_answers: "Tus respuestas",
-      section_analysis: "Análisis",
-      section_positioning: "Mi posicionamiento",
-      label_your_answer: "Tu respuesta",
-      label_best_option: "Mi respuesta honesta",
-      label_alignment: "Alineación",
-      match_message: "Pensamos igual — esta es mi respuesta honesta.",
-      restartLabel: "Empezar de nuevo",
-      cta_text: "Si después de ver esto crees que mi mentalidad y forma de enfocar la arquitectura cuadran con tu empresa, hablemos.",
-      cta_btn: "Hablemos",
-      label_name: "Tu nombre",
-      label_email: "Correo electrónico",
-      success_msg: "¡Correo enviado! Te contestaré lo antes posible.",
-      positioning: "Los mejores Solution Architects que he conocido no tenían el certificado más caro ni el equipo más grande. Tenían algo mejor: años resolviendo problemas reales, visión para anticiparse al fallo, y la capacidad de hacer que las cosas funcionen cuando todo lo demás falla.\n\nEso no se ve en un currículum. Se ve en cómo piensan y cómo actúan bajo presión.",
-      footer: "La experiencia no siempre se ve en los títulos.\nSe nota cuando los sistemas empiezan a fallar y alguien sabe exactamente qué hacer.",
-      alignment_high: "Acierto",
-      alignment_partial: "Parcial",
-      alignment_low: "Sesgo",
-      of: "de"
-    },
-    en: {
-      profile_kind: "Keen Eye",
-      profile_mixed: "Mixed Criteria",
-      profile_bias: "Credential Bias",
-      summary_kind: "You value real execution ability over titles. You identify talent where others see gaps. This is the profile of someone who understands that architecture is demonstrated by solving problems, not collecting certificates.",
-      summary_mixed: "Your criteria is inconsistent. Sometimes you value practical skills, other times you're swayed by credentials. This can lead you to dismiss good candidates or hire profiles that look good on paper but don't deliver in reality.",
-      summary_bias: "You prioritize formal credentials and hierarchical experience. This works in stable, predictable environments. But in complex projects with uncertainty and legacy systems — where a good Solution Architect is needed most — this approach systematically dismisses the most valuable profiles.",
-      summary_default: "Your answers don't show a clear pattern. You may evaluate case by case, or you may not have a defined criterion for identifying architectural talent.",
-      section_your_answers: "Your answers",
-      section_analysis: "Analysis",
-      section_positioning: "My positioning",
-      label_your_answer: "Your answer",
-      label_best_option: "My honest answer",
-      label_alignment: "Alignment",
-      match_message: "Great minds think alike — this is my honest answer too.",
-      restartLabel: "Start over",
-      cta_text: "If you think my mindset and approach to architecture align with your company, let's talk.",
-      cta_btn: "Let's talk",
-      label_name: "Your name",
-      label_email: "Email address",
-      success_msg: "Message sent! I will get back to you as soon as possible.",
-      positioning: "The best Solution Architects I've met didn't have the most expensive certification or the largest team. They had something better: years of solving real problems, vision to anticipate failure, and the ability to make things work when everything else fails.\n\nThat doesn't show up on a resume. It shows in how they think and act under pressure.",
-      footer: "Experience isn't always visible in titles.\nIt becomes obvious when systems start failing and someone knows exactly what to do.",
-      alignment_high: "Hit",
-      alignment_partial: "Partial",
-      alignment_low: "Bias",
-      of: "of"
-    }
-  }
-};
-
-function render() {
-  document.getElementById("langBtn").textContent = lang === 'es' ? 'EN' : 'ES';
-  document.documentElement.lang = lang;
-  if (screen === 'intro') renderIntro();
-  else if (screen === 'quiz') renderQuestion();
-  else if (screen === 'result') showResult();
-}
-
-function toggleLang() {
-  lang = lang === 'es' ? 'en' : 'es';
-  saveState();
-  render();
-}
-
-function renderIntro() {
-  const txt = i18n.intro[lang];
-  document.getElementById("app").innerHTML = `
-    <div class="fade">
-      <div class="manifesto">
-        <p>${txt.p1}</p>
-        <p>${txt.p2}</p>
-        <p>${txt.p3}</p>
-      </div>
-      <div class="btn-center">
-        <button class="btn-primary" onclick="startQuiz()">${txt.startBtn}</button>
-      </div>
-    </div>
-  `;
-}
-
-function startQuiz() {
-  screen = 'quiz';
-  current = 0;
-  answers = [];
-  clearState();
-  render();
-}
-
-function restartQuiz() {
-  clearState();
-  screen = 'intro';
-  current = 0;
-  answers = [];
-  render();
-}
-
-function renderQuestion() {
-  const txt = i18n.intro[lang];
-  let q = questions[current];
-  let progressPercent = (current / questions.length) * 100;
-
-  document.getElementById("app").innerHTML = `
-    <div class="fade">
-      <span class="progress-text">${txt.step} ${current + 1} ${txt.of || 'of'} ${questions.length}</span>
-      <div class="progress-container">
-        <div class="progress-bar" style="width: ${progressPercent}%"></div>
-      </div>
-      <h1>${tr(q.q)}</h1>
-      <div class="options-list">
-        ${q.options.map((opt, idx) => `
-          <div class="option" onclick="selectOption(${idx})">
-            ${tr(opt.text)}
-          </div>
-        `).join("")}
-      </div>
-    </div>
-  `;
-}
-
-function selectOption(idx) {
-  let opt = questions[current].options[idx];
-  answers.push({
-    questionIdx: current,
-    chosenIdx: idx,
-    value: opt.value
-  });
-  current++;
-  if (current < questions.length) {
-    saveState();
-    renderQuestion();
-  } else {
-    screen = 'result';
-    saveState();
-    render();
-  }
-}
-
-function getProfile(total, high, low) {
-  let ratio = total / (questions.length * 2);
-  if (ratio > 0.75 && low === 0) return "kind";
-  if (ratio > 0.4) return "mixed";
-  return "bias";
-}
-
-function getSummary(profile) {
-  const r = i18n.result[lang];
-  switch (profile) {
-    case "kind": return r.summary_kind;
-    case "mixed": return r.summary_mixed;
-    case "bias": return r.summary_bias;
-    default: return r.summary_default;
-  }
-}
-
-function getProfileTitle(profile) {
-  const r = i18n.result[lang];
-  const names = { kind: r.profile_kind, mixed: r.profile_mixed, bias: r.profile_bias };
-  const emojis = { kind: "✅", mixed: "⚠️", bias: "❌" };
-  return `${emojis[profile]} ${names[profile]}`;
-}
-
-function buildAnalysis() {
-  const r = i18n.result[lang];
-  return answers.map((a, i) => {
-    const q = questions[a.questionIdx];
-    const chosenOpt = q.options[a.chosenIdx];
-    const isBest = a.value === 2;
-
-    let badgeClass = isBest ? "high" : (a.value === 1 ? "partial" : "low");
-    let alignmentLabel = isBest ? r.alignment_high : (a.value === 1 ? r.alignment_partial : r.alignment_low);
-
-    let content;
-    if (isBest) {
-      content = `
-        <div class="match-block">
-          <div class="match-label">${r.match_message}</div>
-          <div class="match-text">${tr(chosenOpt.text)}</div>
-          <div class="feedback-text">${tr(q.bestExplanation)}</div>
-        </div>`;
-    } else {
-      const bestOpt = q.options.find(o => o.value === 2);
-      content = `
-        <div class="your-answer">
-          <div class="your-answer-label">${r.label_your_answer}</div>
-          <div class="your-answer-text">${tr(chosenOpt.text)}</div>
-          <div class="feedback-text">${tr(chosenOpt.feedback)}</div>
-        </div>
-        <div class="best-option">
-          <div class="best-option-label">${r.label_best_option}</div>
-          <div class="best-option-text">${tr(bestOpt.text)}</div>
-          <div class="feedback-text">${tr(q.bestExplanation)}</div>
-        </div>`;
+    // ─── PAGE VISIT TRACKING ───
+    function trackVisit(){
+        sessionId = genId();
+        const payload = {
+            evento: 'page_visit',
+            fecha: new Date().toISOString(),
+            session_id: sessionId,
+            user_agent: navigator.userAgent || '',
+            idioma_navegador: navigator.language || '',
+            referrer: document.referrer || '',
+            url: window.location.href
+        };
+        fetch('https://n8n.misrouted.es/webhook/check', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(()=>{});
     }
 
-    return `
-      <div class="block">
-        <p style="margin:0; font-weight:600;">${i + 1}. ${tr(q.q)}</p>
-        ${content}
-        <span class="alignment-badge ${badgeClass}">${r.label_alignment}: ${alignmentLabel}</span>
-      </div>
-    `;
-  }).join("");
-}
+    // ─── RENDER QUIZ ───
+    function renderQuiz(){
+        const app = document.getElementById('quizApp');
+        if(!app) return;
+        if(quizScreen === 'intro') renderQuizIntro(app);
+        else if(quizScreen === 'question') renderQuizQuestion(app);
+        else if(quizScreen === 'result') renderQuizResult(app);
+    }
 
-function showResult() {
-  const r = i18n.result[lang];
-  let total = answers.reduce((acc, a) => acc + a.value, 0);
-  let high = answers.filter(a => a.value === 2).length;
-  let low = answers.filter(a => a.value === 0).length;
-  let profile = getProfile(total, high, low);
-  let summary = getSummary(profile);
-  let profileTitle = getProfileTitle(profile);
+    function renderQuizIntro(app){
+        app.innerHTML = `
+            <div class="quiz-intro fade-quiz">
+                <p><strong>I've spent years solving architecture problems.</strong> I've seen complete systems crash, teams blocked by bad technical decisions, and projects saved by people who knew more than their titles suggested.</p>
+                <p>These 5 questions present real architecture situations. Your answers will reveal whether your evaluation criteria aligns with what actually matters — or if you're missing profiles that could save your next project.</p>
+                <button class="btn-primary" onclick="startQuiz()">Start evaluation</button>
+            </div>
+        `;
+    }
 
-  document.getElementById("app").innerHTML = `
-    <div class="fade result-card">
-      <h1 style="margin-top:0">${profileTitle}</h1>
-      <p class="result-summary">${summary}</p>
+    function renderQuizQuestion(app){
+        const q = questions[quizCurrent];
+        const pct = (quizCurrent / questions.length) * 100;
+        app.innerHTML = `
+            <div class="fade-quiz">
+                <div class="quiz-progress">
+                    <span class="qp-text">Question ${quizCurrent + 1} of ${questions.length}</span>
+                    <div class="qp-bar"><div class="qp-fill" style="width:${pct}%"></div></div>
+                </div>
+                <div class="quiz-question">
+                    <h3>${t(q.q)}</h3>
+                    ${q.options.map((opt, i) => `
+                        <div class="quiz-option" onclick="selectOption(${i})">${t(opt.text)}</div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
 
-      <h2>${r.section_your_answers}</h2>
-      ${buildAnalysis()}
+    function renderQuizResult(app){
+        const total = quizAnswers.reduce((a, b) => a + b.value, 0);
+        const high = quizAnswers.filter(a => a.value === 2).length;
+        const low = quizAnswers.filter(a => a.value === 0).length;
+        const profile = getProfile(total, high, low);
+        const summary = getSummary(profile);
+        const profileTitle = getProfileTitle(profile);
 
-      <h2>${r.section_positioning}</h2>
-      <p class="explanation" style="font-size:1rem; color:var(--text-main); white-space:pre-line">${r.positioning}</p>
+        app.innerHTML = `
+            <div class="fade-quiz">
+                <div class="quiz-result-title">${profileTitle}</div>
+                <div class="quiz-result-sub">${summary}</div>
+                <div id="quizAnswers">
+                    ${buildAnalysis()}
+                </div>
+                <div id="quizForm" class="result-form">
+                    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:12px;text-align:center;">
+                        If you'd like me to reach out, leave your details. Otherwise just skip.
+                    </p>
+                    <div class="rf-row">
+                        <input type="text" id="qfName" placeholder="Your name" autocomplete="name">
+                        <input type="email" id="qfEmail" placeholder="Email address" autocomplete="email">
+                    </div>
+                    <div class="rf-actions">
+                        <button class="btn-submit" id="btnSubmit" onclick="submitQuiz()">Submit</button>
+                        <button class="btn-skip" onclick="skipSubmit()">Skip</button>
+                    </div>
+                </div>
+                <div id="quizResultMsg"></div>
+                <div class="result-footer-text">Experience isn't always visible in titles. It's obvious when systems start failing and someone knows exactly what to do.</div>
+            </div>
+        `;
+        document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
-      <div class="cta-section" id="contact-container">
-        <p>${r.cta_text}</p>
-        
-        <div class="form-group">
-          <label for="user-name">${r.label_name}</label>
-          <input type="text" id="user-name" class="form-control" placeholder="...">
-        </div>
+    function buildAnalysis(){
+        return quizAnswers.map((a, i) => {
+            const q = questions[a.questionIdx];
+            const chosen = q.options[a.chosenIdx];
+            const isBest = a.value === 2;
+            const badge = isBest ? 'high' : (a.value === 1 ? 'partial' : 'low');
+            const label = isBest ? 'Hit' : (a.value === 1 ? 'Partial' : 'Bias');
 
-        <div class="form-group" style="margin-bottom: 1.8rem;">
-          <label for="user-email">${r.label_email}</label>
-          <input type="email" id="user-email" class="form-control" placeholder="name@company.com">
-        </div>
+            if(isBest){
+                return `
+                    <div class="result-block">
+                        <div class="result-q">${i+1}. ${t(q.q)}</div>
+                        <div class="result-match">
+                            <div class="rm-label">Great minds think alike — this is my honest answer too.</div>
+                            <div class="rm-text">${t(chosen.text)}</div>
+                        </div>
+                        <div class="result-explanation">${t(q.bestExplanation)}</div>
+                        <span class="align-badge align-${badge}">Alignment: ${label}</span>
+                    </div>
+                `;
+            } else {
+                const best = q.options.find(o => o.value === 2);
+                return `
+                    <div class="result-block">
+                        <div class="result-q">${i+1}. ${t(q.q)}</div>
+                        <div class="result-your">
+                            <div class="rl">Your answer</div>
+                            ${t(chosen.text)}
+                        </div>
+                        <div class="result-my">
+                            <div class="rl">My honest answer</div>
+                            ${t(best.text)}
+                        </div>
+                        <div class="result-explanation">${t(q.bestExplanation)}</div>
+                        <span class="align-badge align-${badge}">Alignment: ${label}</span>
+                    </div>
+                `;
+            }
+        }).join('');
+    }
 
-        <div style="text-align: center;">
-          <button id="btn-cta-n8n" class="btn-primary" onclick="sendDataToN8n()">${r.cta_btn}</button>
-        </div>
-      </div>
+    function getProfile(total, high, low){
+        const ratio = total / (questions.length * 2);
+        if(ratio > 0.75 && low === 0) return 'kind';
+        if(ratio > 0.4) return 'mixed';
+        return 'bias';
+    }
 
-      <div class="restart-area">
-        <button class="btn-restart" onclick="restartQuiz()">${r.restartLabel}</button>
-      </div>
+    function getSummary(profile){
+        const summaries = {
+            kind: "You value real execution ability over titles. You identify talent where others see gaps. This is the profile of someone who understands that architecture is demonstrated by solving problems, not collecting certificates.",
+            mixed: "Your criteria is inconsistent. Sometimes you value practical skills, other times you're swayed by credentials. This can lead you to dismiss good candidates or hire profiles that look good on paper but don't deliver.",
+            bias: "You prioritize formal credentials and hierarchical experience. This works in stable environments, but in complex projects with uncertainty and legacy systems — where a good Solution Architect is needed most — this approach systematically dismisses the most valuable profiles."
+        };
+        return summaries[profile] || "Your answers don't show a clear pattern.";
+    }
 
-      <div class="footer" style="margin-top:30px; white-space:pre-line">${r.footer}</div>
-    </div>
-  `;
-}
+    function getProfileTitle(profile){
+        const names = { kind: '✅ Keen Eye', mixed: '⚠️ Mixed Criteria', bias: '❌ Credential Bias' };
+        return names[profile] || '❓ Unknown';
+    }
 
-function sendDataToN8n() {
-  const btn = document.getElementById('btn-cta-n8n');
-  const nameInput = document.getElementById('user-name');
-  const emailInput = document.getElementById('user-email');
-  if (!btn || !nameInput || !emailInput) return;
-
-  const nombre = nameInput.value.trim();
-  const email = emailInput.value.trim();
-
-  // Validación básica antes de enviar
-  if (!nombre) {
-    alert(lang === 'es' ? 'Por favor, introduce tu nombre.' : 'Please enter your name.');
-    nameInput.focus();
-    return;
-  }
-  if (!email || !email.includes('@')) {
-    alert(lang === 'es' ? 'Por favor, introduce un correo válido.' : 'Please enter a valid email.');
-    emailInput.focus();
-    return;
-  }
-
-  btn.disabled = true;
-  const originalText = btn.textContent;
-  btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
-
-  let total = answers.reduce((acc, a) => acc + a.value, 0);
-  let high = answers.filter(a => a.value === 2).length;
-  let low = answers.filter(a => a.value === 0).length;
-  let profile = getProfile(total, high, low);
-
-  let responsesPayload = answers.map((a, i) => {
-    const q = questions[a.questionIdx];
-    return {
-      pregunta_num: i + 1,
-      pregunta_texto_es: q.q.es,
-      pregunta_texto_en: q.q.en,
-      respuesta_elegida_idx: a.chosenIdx,
-      respuesta_elegida_texto_es: q.options[a.chosenIdx].text.es,
-      respuesta_elegida_texto_en: q.options[a.chosenIdx].text.en,
-      valor_puntuacion: a.value
+    // ─── QUIZ ACTIONS ───
+    window.startQuiz = function(){
+        quizScreen = 'question';
+        quizCurrent = 0;
+        quizAnswers = [];
+        renderQuiz();
     };
-  });
 
-  const payload = {
-    fecha: new Date().toISOString(),
-    idioma_navegacion: lang,
-    nombre: nombre,
-    email: email,
-    perfil_resultado: profile,
-    puntuacion_total: total,
-    respuestas_correctas: high,
-    respuestas_incorrectas: low,
-    detalle_respuestas: responsesPayload
-  };
+    window.selectOption = function(idx){
+        const q = questions[quizCurrent];
+        quizAnswers.push({
+            questionIdx: quizCurrent,
+            chosenIdx: idx,
+            value: q.options[idx].value
+        });
+        quizCurrent++;
+        if(quizCurrent < questions.length){
+            renderQuiz();
+        } else {
+            quizScreen = 'result';
+            renderQuiz();
+        }
+    };
 
-  fetch('https://n8n.misrouted.es/webhook/check', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(response => {
-    if (!response.ok) throw new Error('Network response error');
-    
-    // Mostramos el bloque de éxito y ocultamos el formulario
-    document.getElementById('contact-container').innerHTML = `
-      <div class="success-message fade">
-        ${i18n.result[lang].success_msg}
-      </div>
-    `;
-  })
-  .catch(error => {
-    console.error('Error enviando datos a n8n:', error);
-    alert(lang === 'es' ? 'Hubo un error al enviar. Por favor, inténtalo de nuevo.' : 'An error occurred. Please try again.');
-    
-    btn.disabled = false;
-    btn.textContent = originalText;
-  });
-}
+    window.submitQuiz = function(){
+        const btn = document.getElementById('btnSubmit');
+        if(!btn) return;
+        const name = document.getElementById('qfName').value.trim();
+        const email = document.getElementById('qfEmail').value.trim();
 
-restoreState();
-render();
+        if(!name){
+            document.getElementById('qfName').focus();
+            return;
+        }
+        if(!email || !email.includes('@')){
+            document.getElementById('qfEmail').focus();
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+
+        const total = quizAnswers.reduce((a, b) => a + b.value, 0);
+        const high = quizAnswers.filter(a => a.value === 2).length;
+        const low = quizAnswers.filter(a => a.value === 0).length;
+        const profile = getProfile(total, high, low);
+
+        const responsesPayload = quizAnswers.map((a, i) => {
+            const q = questions[a.questionIdx];
+            return {
+                pregunta_num: i + 1,
+                pregunta_texto_es: q.q.es,
+                pregunta_texto_en: q.q.en,
+                respuesta_elegida_idx: a.chosenIdx,
+                respuesta_elegida_texto_es: q.options[a.chosenIdx].text.es,
+                respuesta_elegida_texto_en: q.options[a.chosenIdx].text.en,
+                valor_puntuacion: a.value
+            };
+        });
+
+        const payload = {
+            evento: 'quiz_submission',
+            fecha: new Date().toISOString(),
+            session_id: sessionId,
+            idioma_navegacion: 'en',
+            nombre: name,
+            email: email,
+            perfil_resultado: profile,
+            puntuacion_total: total,
+            respuestas_correctas: high,
+            respuestas_incorrectas: low,
+            detalle_respuestas: responsesPayload
+        };
+
+        fetch('https://n8n.misrouted.es/webhook/check', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(res => {
+            if(!res.ok) throw new Error('Network error');
+            document.getElementById('quizForm').style.display = 'none';
+            document.getElementById('quizResultMsg').innerHTML = `
+                <div class="result-success fade-quiz">Message sent! I'll get back to you as soon as possible.</div>
+            `;
+        })
+        .catch(err => {
+            console.error(err);
+            btn.disabled = false;
+            btn.textContent = 'Submit';
+            alert('An error occurred. Please try again.');
+        });
+    };
+
+    window.skipSubmit = function(){
+        document.getElementById('quizForm').style.display = 'none';
+    };
+
+    // ─── CAROUSEL ───
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+    const cards = carousel.querySelectorAll('.carousel-card');
+
+    // Particles
+    (function(){
+        const c = document.getElementById('particles');
+        for(let i=0;i<35;i++){
+            const p = document.createElement('div'); p.className = 'particle';
+            const s = 2 + Math.random() * 4;
+            p.style.width = s + 'px'; p.style.height = s + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (18 + Math.random() * 28) + 's';
+            p.style.animationDelay = (Math.random() * 25) + 's';
+            c.appendChild(p);
+        }
+    })();
+
+    // Dots
+    cards.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to case ' + (i+1));
+        dot.addEventListener('click', () => {
+            carousel.scrollTo({ left: i * carousel.offsetWidth, behavior: 'smooth' });
+        });
+        dotsContainer.appendChild(dot);
+    });
+    const dots = dotsContainer.querySelectorAll('.dot');
+
+    function toggleNav(){
+        const sl = carousel.scrollLeft;
+        const mx = carousel.scrollWidth - carousel.clientWidth;
+        prevBtn.classList.toggle('hidden', sl <= 5);
+        nextBtn.classList.toggle('hidden', sl >= mx - 5);
+    }
+    function updateDots(){
+        const idx = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        cards.forEach((c, i) => c.classList.toggle('visible', i === idx));
+    }
+    function onScroll(){ toggleNav(); updateDots(); }
+
+    nextBtn.addEventListener('click', () => carousel.scrollBy({ left: carousel.offsetWidth, behavior: 'smooth' }));
+    prevBtn.addEventListener('click', () => carousel.scrollBy({ left: -carousel.offsetWidth, behavior: 'smooth' }));
+    carousel.addEventListener('scroll', onScroll);
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'ArrowRight') nextBtn.click();
+        if(e.key === 'ArrowLeft') prevBtn.click();
+    });
+
+    let tx=0, ty=0;
+    carousel.addEventListener('touchstart', (e) => { tx=e.changedTouches[0].screenX; ty=e.changedTouches[0].screenY; }, { passive: true });
+    carousel.addEventListener('touchend', (e) => {
+        const dx = tx - e.changedTouches[0].screenX;
+        const dy = ty - e.changedTouches[0].screenY;
+        if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)*1.5){
+            if(dx > 0) nextBtn.click(); else prevBtn.click();
+        }
+    }, { passive: true });
+
+    function adjustButtons(){
+        const bc = document.querySelector('.btn-container');
+        if(window.innerWidth <= 1060){
+            bc.appendChild(prevBtn); bc.appendChild(nextBtn);
+        } else {
+            document.querySelector('.carousel-container').appendChild(prevBtn);
+            document.querySelector('.carousel-container').appendChild(nextBtn);
+        }
+        toggleNav();
+    }
+
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => scrollBtn.classList.toggle('show', window.scrollY > 400));
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    window.addEventListener('resize', adjustButtons);
+    window.addEventListener('DOMContentLoaded', () => {
+        adjustButtons(); toggleNav(); updateDots();
+        cards[0]?.classList.add('visible');
+        renderQuiz();
+        trackVisit();
+    });
+})();
 </script>
+
 </body>
 </html>
