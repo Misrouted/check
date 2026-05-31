@@ -351,6 +351,21 @@
             border-color: var(--accent);
         }
         .result-form .rf-row input::placeholder { color: var(--muted); opacity: 0.5; }
+        .result-form .rf-textarea {
+            width: 100%;
+            padding: 10px 14px;
+            background: rgba(13,18,37,0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            min-height: 70px;
+            transition: border-color 0.2s;
+        }
+        .result-form .rf-textarea:focus { outline: none; border-color: var(--accent); }
+        .result-form .rf-textarea::placeholder { color: var(--muted); opacity: 0.5; }
 
         .result-form .rf-actions {
             display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
@@ -1156,6 +1171,9 @@
                         <input type="text" id="qfName" placeholder="Your name" autocomplete="name">
                         <input type="email" id="qfEmail" placeholder="Email address" autocomplete="email">
                     </div>
+                    <div class="rf-row">
+                        <textarea id="qfReason" class="rf-textarea" placeholder="What are you looking for? (optional)"></textarea>
+                    </div>
                     <div class="rf-actions">
                         <button class="btn-submit" id="btnSubmit" onclick="submitQuiz()">Submit</button>
                         <button class="btn-skip" onclick="skipSubmit()">Skip</button>
@@ -1297,6 +1315,7 @@
             idioma_navegacion: 'en',
             nombre: name,
             email: email,
+            motivo_contacto: document.getElementById('qfReason').value.trim(),
             perfil_resultado: profile,
             puntuacion_total: total,
             respuestas_correctas: high,
